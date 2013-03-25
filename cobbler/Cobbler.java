@@ -3,6 +3,7 @@ import robocode.*;
 
 public class Cobbler extends Robot
 {
+    private int timesBeforeFire = 0;
 	public void run() {
 		while (true) {
 			this.turnGunRight(360);
@@ -12,8 +13,13 @@ public class Cobbler extends Robot
 
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// should never be less than zero, but it's an old habbit.
-		if (this.getGunHeat() <= 0)
+		if (this.getGunHeat() <= 0) {
 			this.fire(1);
+            System.out.println("calls before fire: " + Integer.toString(timesBeforeFire));
+            timesBeforeFire = 0;
+        }
+        else
+            timesBeforeFire++;
 	}
 
 	public void onHitWall(HitWallEvent e) {

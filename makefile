@@ -1,4 +1,4 @@
-TO = $(USER)
+to = $(USER)
 robots: 
 	javac -classpath $(ROBOCODE)/libs/robocode.jar */*.java
 	
@@ -6,7 +6,6 @@ clean:
 	rm */*.class
 
 deploy:
-	rm -rf $(ROBOCODE)/robots/$(TO)
-	mkdir -p $(ROBOCODE)/robots/$(TO)
-	cp */*.class $(ROBOCODE)/robots/$(TO)
+	mkdir -p $(ROBOCODE)/robots/$(to)
+	cp */*.class $(ROBOCODE)/robots/$(to)
 
