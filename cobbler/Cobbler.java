@@ -13,9 +13,6 @@ public class Cobbler extends Robot
 
     public void onScannedRobot(ScannedRobotEvent e) {
         // should never be less than zero, but it's an old habbit.
-
-        if (true) { return; }
-
         if (this.getGunHeat() <= 0) {
             this.fire(1);
             System.out.println("calls before fire: " + Integer.toString(timesBeforeFire));

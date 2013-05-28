@@ -29,20 +29,11 @@ public class Peach extends AdvancedRobot {
             out.format("ticks past: %d\n", delta);
             time = this.getTime();
 
-            if (v <= 0)
-                return;
-
             double a = Math.toRadians((e.getHeading() % 360));
             for (int t = 1; t <= 10; t++) {
                 int h = v * t;
-                int nX = (int)(Math.sin(a) * h);
-                int nY = (int)(Math.cos(a) * h);
-
-                out.format("angle = %d, v = %d, h = %d, nX = %d, nY = %d, x = %d, y = %d, xA = %f, yA = %f\n", (int)e.getHeading() % 360, v, h, nX, nY, x, y, Math.sin(a), Math.cos(a));
-                nX += x;
-                nY += y;
-
-                p = new Point(x, y);
+                int nX = (int)(Math.sin(a) * h) + x;
+                int nY = (int)(Math.cos(a) * h) + y;
 
                 Point[] set = new Point[3];
                 set[0] = new Point(nX, nY, 'b');
@@ -50,14 +41,11 @@ public class Peach extends AdvancedRobot {
                 set[2] = new Point((int)getX(), nY);
 
                 Triangle tr = new Triangle(set);
-
                 fs.addTriangle(tr);
             }
-
-            run = false;
         }
         catch (Exception ex) {
-            //don't care
+            out.println(ex.getMessage());
         }
     }
 
