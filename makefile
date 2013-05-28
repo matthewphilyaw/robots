@@ -1,7 +1,7 @@
 to = $(USER)
 robots: 
 	javac -classpath $(ROBOCODE)/libs/robocode.jar */*.java
-	
+
 clean:
 	rm */*.class
 
