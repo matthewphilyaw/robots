@@ -1,11 +1,11 @@
 to = $(USER)
-robots: 
+mtp.robots:
 	javac -classpath $(ROBOCODE)/libs/robocode.jar */*.java
 
 clean:
 	rm */*.class
 
 deploy:
-	mkdir -p $(ROBOCODE)/robots/$(to)
-	cp */*.class $(ROBOCODE)/robots/$(to)
+	mkdir -p $(ROBOCODE)/mtp.robots/$(to)
+	cp */*.class $(ROBOCODE)/mtp.robots/$(to)
 

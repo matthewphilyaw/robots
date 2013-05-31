@@ -1,4 +1,4 @@
-package mtp;
+package mtp.robots.peach;
 
 public class Triangle {
     private final Point[] points;

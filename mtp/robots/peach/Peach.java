@@ -1,4 +1,4 @@
-package mtp;
+package mtp.robots.peach;
 import robocode.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -19,6 +19,7 @@ public class Peach extends AdvancedRobot {
 
     public void onScannedRobot(ScannedRobotEvent e) {
         try {
+            out.format("event is %d ticks old\n", this.getTime() - e.getTime());
             double angle = Math.toRadians((this.getHeading() + e.getBearing()) % 360);
             int x = (int)(getX() + Math.sin(angle) * e.getDistance());
             int y = (int)(getY() + Math.cos(angle) * e.getDistance());

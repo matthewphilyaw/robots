@@ -1,4 +1,4 @@
-package mtp;
+package mtp.robots.peach;
 
 public class Point {
     private int x;
