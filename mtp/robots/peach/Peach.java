@@ -1,6 +1,6 @@
 package mtp.robots.peach;
 import robocode.*;
-import java.awt.Color;
+import java.util.*;
 import java.awt.Graphics2D;
 
 public class Peach extends AdvancedRobot {
@@ -14,32 +14,47 @@ public class Peach extends AdvancedRobot {
         while (true) {
             waitFor(new RadarTurnCompleteCondition(this));
             setTurnRadarRight(360);
+            setAhead(100);
         }
     }
 
+    // abstract further.
+    // Create interface for target
+    // use anonymous inner classes to generate one based off event
     public void onScannedRobot(ScannedRobotEvent e) {
         try {
-            out.format("event is %d ticks old\n", this.getTime() - e.getTime());
-            double angle = Math.toRadians((this.getHeading() + e.getBearing()) % 360);
-            int x = (int)(getX() + Math.sin(angle) * e.getDistance());
-            int y = (int)(getY() + Math.cos(angle) * e.getDistance());
+            final double angle = Math.toRadians((this.getHeading() + e.getBearing()) % 360);
+            final Point target =  new Point((int)(getX() + Math.sin(angle) * e.getDistance()),
+                                      (int)(getY() + Math.cos(angle) * e.getDistance()));
+            final Point assassin = new Point((int)getX(),
+                                       (int)getY());
 
-            int v = (int)e.getVelocity();
+            final int tv = (int)e.getVelocity();
+            final int av = (int)this.getVelocity();
 
-            long delta = this.getTime() - time;
-            out.format("ticks past: %d\n", delta);
-            time = this.getTime();
+            TargetingData td = new TargetingData();
+            List<TargetingPrediction> pd = td.getPredictions();
 
-            double a = Math.toRadians((e.getHeading() % 360));
-            for (int t = 1; t <= 10; t++) {
-                int h = v * t;
-                int nX = (int)(Math.sin(a) * h) + x;
-                int nY = (int)(Math.cos(a) * h) + y;
+            pd.add(new TargetingPrediction(target,
+                                           assassin,
+                                           0));
 
+            final double ta = Math.toRadians((e.getHeading() % 360));
+            final double aa = Math.toRadians((this.getHeading() % 360));
+            for (int t = 0; t < 10; t++) {
+                final int th = tv * (t + 1);
+                final int ah = av * (t + 1);
+
+                final Point targetP = new Point ((int)(Math.sin(ta) * th) + target.getX(),
+                                           (int)(Math.cos(ta) * th) + target.getY());
+                final Point assassinP = new Point ((int)(Math.sin(aa) * ah) + assassin.getX(),
+                                             (int)(Math.cos(aa) * ah) + assassin.getY());
+
+                pd.add(new TargetingPrediction(targetP, assassinP, t));
                 Point[] set = new Point[3];
-                set[0] = new Point(nX, nY, 'b');
-                set[1] = new Point((int)getX(), (int)getY());
-                set[2] = new Point((int)getX(), nY);
+                set[0] = new Point(targetP.getX(), targetP.getY(), 'b');
+                set[1] = new Point(assassinP.getX(),assassinP.getY());
+                set[2] = new Point(assassinP.getX(), targetP.getY());
 
                 Triangle tr = new Triangle(set);
                 fs.addTriangle(tr);
