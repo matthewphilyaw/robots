@@ -1,7 +1,7 @@
 package mtp.robots.peach;
 
-import robocode.AdvancedRobot;
-import robocode.ScannedRobotEvent;
+import robocode.util.Utils;
+import robocode.*;
 
 import java.awt.*;
 import java.util.*;
@@ -18,7 +18,7 @@ public class TargetingData {
     }
 
     public static TargetingData GenerateTargetingData(AdvancedRobot self, ScannedRobotEvent e, int numPredictions) {
-        // angle between my current heading and the bearing line to the target
+        // bearing angle relative to grid.
         final double angle = self.getHeadingRadians() + e.getBearingRadians();
 
         // targets current point on the grid
@@ -49,8 +49,15 @@ public class TargetingData {
         return td;
     }
 
-    public void getTargetingSolutions() {
+    public List<Double> getTargetingSolutions(int minTicks) {
+        List<Double> solutions = new ArrayList<Double>();
+        for (TargetingPrediction p : this.predictions) {
+            if (normalizeAngleToCannon(p.getAngle()) / Rules.GUN_TURN_RATE_RADIANS > minTicks)
+                continue;
+            solutions.add(normalizeAngleToCannon(p.getAngle()));
+        }
 
+        return solutions;
     }
 
     public List<TargetingPrediction> getPredictions() { return this.predictions; }
@@ -73,14 +80,28 @@ public class TargetingData {
         for (TargetingPrediction t : this.predictions)
         {
             sb.append("-- -- -- --\n");
-            sb.append(String.format("Tick: %d\nAngle needed: %f\nVelocity needed: %f\nDistance to target: %f\n",
-                      t.getTime(),
-                      t.getAngle(),
-                      t.getVelocity(),
-                      t.getDistance()));
+            sb.append(String.format("Tick: %d\nAngle needed: %f\nVelocity needed: %f\nDistance to target: %f\nTicks to rotate cannon: %f\n",
+                    t.getTime(),
+                    Math.toDegrees(normalizeAngleToCannon(t.getAngle())),
+                    t.getVelocity(),
+                    t.getDistance(),
+                    normalizeAngleToCannon(t.getAngle()) / Rules.GUN_TURN_RATE_RADIANS));
         }
         sb.append("== == == ==\n");
 
         return sb.toString();
+    }
+
+    private double normalizeAngleToCannon(double angle) {
+        final double gunAngle = self.getGunHeadingRadians();
+
+
+        if (Utils.isNear(gunAngle, angle))
+            return 0.0;
+
+        if (gunAngle > angle)
+            return -(gunAngle - angle);
+
+        return angle - gunAngle;
     }
 }

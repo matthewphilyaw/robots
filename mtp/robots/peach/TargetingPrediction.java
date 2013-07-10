@@ -1,5 +1,7 @@
 package mtp.robots.peach;
 
+import robocode.util.Utils;
+
 public class TargetingPrediction {
     private final Point target;
     private final Point assassin;
@@ -15,9 +17,10 @@ public class TargetingPrediction {
         this.target = target;
         this.assassin = assassin;
         this.time = time;
-        angle = Math.atan2(relTarget.getY(), relTarget.getX());
+        angle = Utils.normalAbsoluteAngle((Math.PI / 2) - Math.atan2(relTarget.getY(), relTarget.getX()));
         velocity = Math.sqrt(Math.pow(relTarget.getX() / (double)this.time, 2) + Math.pow(relTarget.getY() / this.time,2));
     }
+
 
     public Point getTarget() { return target; }
     public Point getAssassin() { return assassin; }
