@@ -11,6 +11,8 @@ public class TargetingPrediction {
     private final double distance;
     private final int time;
 
+    private double normalizedToCannonAngle;
+
     public TargetingPrediction(Point target, Point assassin, int time) {
         relTarget = new Point(target.getX() - assassin.getX(), target.getY() - assassin.getY());
         distance = Math.sqrt(Math.pow(Math.abs(relTarget.getX()), 2) + Math.pow(Math.abs(relTarget.getY()), 2));
@@ -28,4 +30,11 @@ public class TargetingPrediction {
     public double getVelocity() { return this.velocity; }
     public double getDistance() { return this.distance; }
     public int getTime() { return this.time; }
+    public double getNormalizedToCannonAngle() { return this.normalizedToCannonAngle; }
+
+
+    public void setNormalizedToCannonAngle(double angle)
+    {
+        this.normalizedToCannonAngle = angle;
+    }
 }

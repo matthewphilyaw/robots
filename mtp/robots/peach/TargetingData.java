@@ -43,18 +43,27 @@ public class TargetingData {
                                                (int)(Math.cos(self.getHeadingRadians()) * ah) + assassinPos.getY());
 
             TargetingPrediction tp = new TargetingPrediction(targetP, assassinP, t);
+            tp.setNormalizedToCannonAngle(TargetingData.normalizeAngleToCannon(self, tp.getAngle()));
             pd.add(tp);
         }
 
         return td;
     }
 
-    public List<Double> getTargetingSolutions(int minTicks) {
-        List<Double> solutions = new ArrayList<Double>();
+    public List<TargetingPrediction> getTargetingSolutions(int minTicks) {
+        List<TargetingPrediction> solutions = new ArrayList<TargetingPrediction>();
         for (TargetingPrediction p : this.predictions) {
-            if (normalizeAngleToCannon(p.getAngle()) / Rules.GUN_TURN_RATE_RADIANS > minTicks)
+            double ticksToTurn = p.getNormalizedToCannonAngle() / Rules.GUN_TURN_RATE_RADIANS;
+
+            // idea being that if ticksToTurn is not a whole number,
+            // it will take one extra tick to finish rotating
+            if (ticksToTurn % minTicks > 0)
+                minTicks++;
+
+            if (ticksToTurn > minTicks)
                 continue;
-            solutions.add(normalizeAngleToCannon(p.getAngle()));
+
+            solutions.add(p);
         }
 
         return solutions;
@@ -65,7 +74,7 @@ public class TargetingData {
     public long getTimeCreated() { return this.timeCreated; }
 
     public void renderPredictions(Graphics2D g) {
-        g.setColor(new Color(0, 255, 0, 255));
+        g.setColor(new Color(0, 14, 255, 255));
         for (TargetingPrediction t : this.predictions) {
             g.drawLine(t.getAssassin().getX(), t.getAssassin().getY(), t.getTarget().getX(), t.getTarget().getY());
             g.fillOval(t.getAssassin().getX() - 2, t.getAssassin().getY() - 2, 4, 4);
@@ -82,19 +91,18 @@ public class TargetingData {
             sb.append("-- -- -- --\n");
             sb.append(String.format("Tick: %d\nAngle needed: %f\nVelocity needed: %f\nDistance to target: %f\nTicks to rotate cannon: %f\n",
                     t.getTime(),
-                    Math.toDegrees(normalizeAngleToCannon(t.getAngle())),
+                    Math.toDegrees(t.getNormalizedToCannonAngle()),
                     t.getVelocity(),
                     t.getDistance(),
-                    normalizeAngleToCannon(t.getAngle()) / Rules.GUN_TURN_RATE_RADIANS));
+                    t.getNormalizedToCannonAngle() / Rules.GUN_TURN_RATE_RADIANS));
         }
         sb.append("== == == ==\n");
 
         return sb.toString();
     }
 
-    private double normalizeAngleToCannon(double angle) {
+    private static double normalizeAngleToCannon(AdvancedRobot self, double angle) {
         final double gunAngle = self.getGunHeadingRadians();
-
 
         if (Utils.isNear(gunAngle, angle))
             return 0.0;
