@@ -52,20 +52,23 @@ public class TargetingData {
 
     public List<TargetingPrediction> getTargetingSolutions(int minTicks) {
         List<TargetingPrediction> solutions = new ArrayList<TargetingPrediction>();
+        System.out.println("---");
         for (TargetingPrediction p : this.predictions) {
-            double ticksToTurn = p.getNormalizedToCannonAngle() / Rules.GUN_TURN_RATE_RADIANS;
+            int adjustedTicks = minTicks;
+            double ticksToTurn = Math.abs(Math.toDegrees(p.getNormalizedToCannonAngle())) / Rules.GUN_TURN_RATE;
 
             // idea being that if ticksToTurn is not a whole number,
             // it will take one extra tick to finish rotating
-            if (ticksToTurn % minTicks > 0)
-                minTicks++;
+            if (ticksToTurn % adjustedTicks > 0)
+                adjustedTicks++;
 
-            if (ticksToTurn > minTicks)
+            if (ticksToTurn > adjustedTicks)
                 continue;
 
+            System.out.println("Solution picked: " + p.getTime() + "\nTicks to turn: " + ticksToTurn + "\nAngle: " + Math.toDegrees(p.getNormalizedToCannonAngle()));
             solutions.add(p);
         }
-
+        System.out.println("---");
         return solutions;
     }
 

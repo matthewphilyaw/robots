@@ -41,31 +41,30 @@ public class Peach extends AdvancedRobot {
             return;
 
         if (this.fire && !(this.getGunHeat() > 0)) {
-            Bullet b = this.setFireBullet(Rules.MAX_BULLET_POWER);
-            if (b == null) { System.out.println("bullet is null"); }
-            else {
-                this.execute();
-                synchronized (bulletsFiredLock) {
-                    bulletsFired.add(new BulletInfo(b.hashCode(),
-                            solutionToFire,
-                            Peach.battleId,
-                            this.roundId));
-                }
-            }
             this.fire = false;
+            Bullet b = this.setFireBullet(Rules.MAX_BULLET_POWER);
+            if (solutionToFire == null) { System.out.println("solution to fire is null"); return; }
+            if (b == null) { System.out.println("bullet is null"); return; }
+            synchronized (bulletsFiredLock) {
+                bulletsFired.add(new BulletInfo(b.hashCode(),
+                                 solutionToFire,
+                                 Peach.battleId,
+                                 this.roundId));
+            }
         }
 
         try {
-            td = TargetingData.GenerateTargetingData(this, e, 10);
+            td = TargetingData.GenerateTargetingData(this, e, 30);
             //out.println(td);
 
-            List<TargetingPrediction> solutions = td.getTargetingSolutions(5);
+            List<TargetingPrediction> solutions = td.getTargetingSolutions(1);
             if (solutions.size() > 0) {
-                int index = solutions.size() - 1;
+            /*int index = solutions.size() - 1;
                 if (solutions.size() > 4)
                     index = solutions.size() - 4;
-                this.solutionToFire = solutions.get(index);
-                this.setTurnGunRightRadians(solutions.get(index).getNormalizedToCannonAngle());
+                this.solutionToFire = solutions.get(index);*/
+                this.solutionToFire = solutions.get(0);
+                this.setTurnGunRightRadians(solutions.get(0).getNormalizedToCannonAngle());
                 this.fire = true;
             }
             else {
@@ -83,6 +82,7 @@ public class Peach extends AdvancedRobot {
                 if (!bi.doesBulletMatch(e.getBullet(), Peach.battleId, this.roundId)) continue;
                 bi.setHit(true);
                 bulletsThatHit.add(bi);
+                solutionToFire = null;
                 break;
             }
         }
@@ -94,6 +94,7 @@ public class Peach extends AdvancedRobot {
 
         for (BulletInfo bi : bulletsThatHit) {
             tTicks += bi.getPrediction().getTime();
+            System.out.println(bi.getPrediction().getTime());
         }
 
         avgTicks = tTicks / bulletsThatHit.size();
