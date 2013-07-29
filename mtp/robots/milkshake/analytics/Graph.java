@@ -6,6 +6,7 @@ public class Graph<TVertexData, TEdgeData> {
     private ConcurrentHashMap<Double, Vertex<TVertexData, TEdgeData>> vertices;
 
     public int VertexCount() { return this.vertices.size(); }
+    
     public int TotalEdgeCount() {
         int count = 0;
         for (Vertex<TVertexData, TEdgeData> n : this.vertices.values()) {
