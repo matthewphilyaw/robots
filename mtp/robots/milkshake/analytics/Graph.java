@@ -5,9 +5,9 @@ import java.util.concurrent.*;
 public class Graph<TVertexData, TEdgeData> {
     private ConcurrentHashMap<Double, Vertex<TVertexData, TEdgeData>> vertices;
 
-    public int VertexCount() { return this.vertices.size(); }
+    public int vertexCount() { return this.vertices.size(); }
     
-    public int TotalEdgeCount() {
+    public int totalEdgeCount() {
         int count = 0;
         for (Vertex<TVertexData, TEdgeData> n : this.vertices.values()) {
            count += n.getEdgeCount();
