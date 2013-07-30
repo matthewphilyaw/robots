@@ -20,15 +20,18 @@ public class DirectedGraph<TVertexData, TEdgeData> {
        vertices.putIfAbsent(key, vertex);
     }
 
-    public void removeVertex(TVertexData key) {
+    public void removeVertex(TVertexData key) throws Exception {
+        checkExistence(key, "key doesn't exist");
         vertices.remove(key);
     }
 
-    public void addEdge(TVertexData u, TVertexData v, TEdgeData data) {
+    public void addEdge(TVertexData u, TVertexData v, TEdgeData data) throws Exception {
+        checkUVExistance(u,v);
         vertices.get(u).addEdge(v, data);
     }
 
-    public void removeEdge(TVertexData u, TVertexData v) {
+    public void removeEdge(TVertexData u, TVertexData v) throws Exception {
+        checkUVExistance(u,v);
         vertices.get(u).removeEdge(v);
 
         // need to remove it from all nodes. Not happy with this,
@@ -39,13 +42,23 @@ public class DirectedGraph<TVertexData, TEdgeData> {
         }
     }
 
-    public void getVertex(TVertexData key) {
+    public void getVertex(TVertexData key) throws Exception {
+        checkExistence(key, "key doesn't exist");
         vertices.get(key);
     }
 
-    public Vertex<TVertexData, TEdgeData> createAndAddVertex(TVertexData key, TVertexData vertexData) {
+    public Vertex<TVertexData, TEdgeData> createAndAddVertex(TVertexData vertexData) {
         Vertex<TVertexData, TEdgeData> vert = new Vertex<TVertexData, TEdgeData>(vertexData);
-        this.addVertex(key, vert);
+        this.addVertex(vertexData, vert);
         return vert;
+    }
+
+    private void checkUVExistance(TVertexData u, TVertexData v) throws Exception {
+        checkExistence(u, "u is not in graph");
+        checkExistence(v, "v is not in graph");
+    }
+
+    private void checkExistence(TVertexData n, String errMessage) throws Exception {
+        if (!vertices.containsKey(n)) throw new Exception(errMessage);
     }
 }
