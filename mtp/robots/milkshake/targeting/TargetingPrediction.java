@@ -5,7 +5,6 @@ import robocode.util.Utils;
 public class TargetingPrediction {
     private final Point target;
     private final Point assassin;
-    private final Point relTarget;
     private final double angle;
     private final double velocity;
     private final double distance;
@@ -14,7 +13,7 @@ public class TargetingPrediction {
     private double normalizedToCannonAngle;
 
     public TargetingPrediction(Point target, Point assassin, int time) {
-        relTarget = new Point(target.getX() - assassin.getX(), target.getY() - assassin.getY());
+        Point relTarget = new Point(target.getX() - assassin.getX(), target.getY() - assassin.getY());
         distance = Math.sqrt(Math.pow(Math.abs(relTarget.getX()), 2) + Math.pow(Math.abs(relTarget.getY()), 2));
         this.target = target;
         this.assassin = assassin;

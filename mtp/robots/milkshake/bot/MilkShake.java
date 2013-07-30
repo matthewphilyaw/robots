@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.UUID;
 
 public class MilkShake extends AdvancedRobot {
-    private static UUID battleId = UUID.randomUUID();
-    private static List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
-    private static Object bulletsFiredLock = new Object();
+    private static final UUID battleId = UUID.randomUUID();
+    private static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
+    private static final Object bulletsFiredLock = new Object();
 
-    private UUID roundId = UUID.randomUUID();
+    private final UUID roundId = UUID.randomUUID();
     private TargetingData td;
     private boolean fire = false;
     private TargetingPrediction solutionToFire;
-    private List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
+    private final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
 
     public void run() {
         this.setAdjustGunForRobotTurn(true);
@@ -83,7 +83,7 @@ public class MilkShake extends AdvancedRobot {
         synchronized (bulletsFiredLock) {
             for (BulletInfo bi : bulletsFired) {
                 if (!bi.doesBulletMatch(e.getBullet(), MilkShake.battleId, this.roundId)) continue;
-                bi.setHit(true);
+                bi.setHit();
                 bulletsThatHit.add(bi);
                 solutionToFire = null;
                 break;
@@ -93,7 +93,7 @@ public class MilkShake extends AdvancedRobot {
 
     public void onRoundEnded(RoundEndedEvent event) {
         double tTicks = 0;
-        double avgTicks = 0;
+        double avgTicks;
 
         for (BulletInfo bi : bulletsThatHit) {
             tTicks += bi.getPrediction().getTime();

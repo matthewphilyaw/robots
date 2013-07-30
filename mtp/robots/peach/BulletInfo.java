@@ -31,5 +31,5 @@ public class BulletInfo {
 
     }
 
-    public void setHit(boolean didHit) { this.didHit = didHit; }
+    public void setHit() { this.didHit = true; }
 }

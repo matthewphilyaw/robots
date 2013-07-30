@@ -4,35 +4,35 @@ package mtp.robots.milkshake.analytics;
 import java.util.concurrent.*;
 import java.util.*;
 
-public class Vertex<TNodeData, TEdgeData> {
-    private ConcurrentHashMap<Double, TEdgeData> adj = new ConcurrentHashMap<Double, TEdgeData>();
-    TNodeData data;
+public class Vertex<TVertexData, TEdgeData> {
+    final ConcurrentHashMap<TVertexData, TEdgeData> adj = new ConcurrentHashMap<TVertexData, TEdgeData>();
+    final TVertexData data;
 
-    public Vertex(TNodeData data) {
+    public Vertex(TVertexData data) {
        this.data = data;
     }
 
-    public TEdgeData getEdgeData(double edge) {
-        return adj.get(edge);
+    public TEdgeData getEdgeData(TVertexData key) {
+        return adj.get(key);
     }
 
-    public void setEdgeData(double edge, TEdgeData data) {
-        adj.put(edge, data);
+    public void setEdgeData(TVertexData key, TEdgeData data) {
+        adj.replace(key, data);
     }
 
-    public void addEdge(double edge, TEdgeData data) {
-        adj.put(edge, data);
+    public void addEdge(TVertexData key, TEdgeData data) {
+        adj.putIfAbsent(key, data);
     }
 
-    public void removeEdge(double edge) {
-        adj.remove(edge);
+    public void removeEdge(TVertexData key) {
+        adj.remove(key);
     }
 
     public int getEdgeCount() {
         return adj.size();
     }
 
-    public Enumeration<Double> getEdges() {
+    public Enumeration<TVertexData> getEdges() {
         return adj.keys();
     }
 }
