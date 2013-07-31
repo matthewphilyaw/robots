@@ -5,14 +5,7 @@
     <option name="SCOPE_TYPE" value="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95d0aa37-3a29-49d2-9d97-da4eb92614f4" name="Default" comment="kk">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/DirectedGraphTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/RVertexDataTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/VertexTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" afterPath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="95d0aa37-3a29-49d2-9d97-da4eb92614f4" name="Default" comment="kk" />
     <ignored path="robots.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/TargetingData.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1374468323551" ignored="false" />
