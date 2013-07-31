@@ -8,7 +8,7 @@ public class DirectedGraph<TVertexData, TEdgeData> {
 
     public int vertexCount() { return this.vertices.size(); }
 
-    public int totalEdgeCount() {
+    public int edgeCount() {
         int count = 0;
 
         for (HashMap<TVertexData, TEdgeData> d : this.vertices.values()) {
@@ -30,6 +30,10 @@ public class DirectedGraph<TVertexData, TEdgeData> {
         }
     }
 
+    public void removeVertices() {
+        vertices.clear();
+    }
+
     public void addEdge(TVertexData u, TVertexData v, TEdgeData data) throws Exception {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
         if (!vertices.containsKey(v)) throw new Exception("v is not in graph");
@@ -39,6 +43,17 @@ public class DirectedGraph<TVertexData, TEdgeData> {
     public void removeEdge(TVertexData u, TVertexData v) throws Exception {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
         vertices.get(u).remove(v);
+    }
+
+    public void removeEdgesFor(TVertexData u) throws Exception {
+        if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
+        vertices.get(u).clear();
+    }
+
+    public void removeEdges() throws Exception {
+        for (TVertexData key : this.vertices.keySet()) {
+            removeEdgesFor(key);
+        }
     }
 
     public Set<Map.Entry<TVertexData, TEdgeData>> getEdges(TVertexData u) throws Exception {
