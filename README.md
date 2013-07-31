@@ -1,13 +1,10 @@
-mtp.robots
-======
+Robots is nice home for robots despite the fact they are coded to annihilate other robots or even another clone of themselves.
 
-place for robocode mtp.robots
+While this behavior isn't condoned here at Robots - no robot shall ever be judged or mistreated due to it's past, current or future actions. They are coded with these actions and truly are not currently capable of breaking there programming and accordingly Robots does not feel they should be punished for these actions. They need a safe haven and Robots strives to provide this to all these robots
 
-crude makefile to build bots and deploy them to the robocode directory. 
+Robots is actively seeking out the coders behind these robots to put an end to this travesty. Several lawsuits have been filed against key coders, along with acquisition of key patents to leverage during the process of said lawsuits. 
 
-to build simply execute make and to deploy execute 
+Progress is being made and any robots in need a good home are welcome to be committed to Robots. 
 
-```make deploy to=[path]```
-
-where 'to' is the folder to copy bots to under robocode/mtp.robots. It defaults to the
-logged in user.
+Sincerely,
+5
