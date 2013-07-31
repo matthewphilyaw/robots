@@ -21,61 +21,62 @@ public class DirectedGraphTest {
     @Test
     public void testVertexCount() throws Exception {
         // new graph, should be zero
-        DirectedGraph<RVertexData, Double> f = new DirectedGraph<RVertexData, Double>();
-        assertEquals(0, f.vertexCount());
+        DirectedGraph<RVertexData, Double> g = new DirectedGraph<RVertexData, Double>();
+        assertEquals(0, g.vertexCount());
 
         // added one vertex, count should reflect it.
-        f.createAndAddVertex(new RVertexData(45.0));
-        assertEquals(1, f.vertexCount());
+        g.addVertex(new RVertexData(45.0));
+        assertEquals(1, g.vertexCount());
 
         // removed one vertex, and in this case should go back to zero.
-        f.removeVertex(new RVertexData(45.0));
-        assertEquals(0, f.vertexCount());
+        g.removeVertex(new RVertexData(45.0));
+        assertEquals(0, g.vertexCount());
 
         // similar values that round to the same nearest tenth (configurable) based on half_up rounding should not
         // only be in there once. half_up rounding rounds to the nearest neighbor unless equidistant
         // in which case it rounds up. So will up or down depending on which value is closer, or round up when exactly
         // in between.
 
-        f.createAndAddVertex(new RVertexData(45.1));
-        f.createAndAddVertex(new RVertexData(45.12));
-        f.createAndAddVertex(new RVertexData(45.13));
-        f.createAndAddVertex(new RVertexData(45.1356333563));
-        f.createAndAddVertex(new RVertexData(45.133));
-        f.createAndAddVertex(new RVertexData(45.13345));
-        f.createAndAddVertex(new RVertexData(45.15));
+        g.addVertex(new RVertexData(45.1));
+        g.addVertex(new RVertexData(45.12));
+        g.addVertex(new RVertexData(45.13));
+        g.addVertex(new RVertexData(45.1356333563));
+        g.addVertex(new RVertexData(45.133));
+        g.addVertex(new RVertexData(45.13345));
+        g.addVertex(new RVertexData(45.15));
 
-        assertEquals(2, f.vertexCount());
+        assertEquals(2, g.vertexCount());
 
         // likewise given a value near enough it should remove the corresponding vertex.
-        f.removeVertex(new RVertexData(45.13424564567));
-        assertEquals(1, f.vertexCount());
+        g.removeVertex(new RVertexData(45.13424564567));
+        assertEquals(1, g.vertexCount());
     }
 
     @Test
     public void testTotalEdgeCount() throws Exception {
-        DirectedGraph<RVertexData, Double> f = new DirectedGraph<RVertexData, Double>();
+        DirectedGraph<RVertexData, Double> g = new DirectedGraph<RVertexData, Double>();
 
         // should be one, only two vertexes exist
-        f.createAndAddVertex(new RVertexData(45.345));
-        f.createAndAddVertex(new RVertexData(45.566));
-        f.addEdge(new RVertexData(45.345), new RVertexData(45.566), 1.0);
+        g.addVertex(new RVertexData(45.345));
+        g.addVertex(new RVertexData(45.566));
+        g.addEdge(new RVertexData(45.345), new RVertexData(45.566), 1.0);
 
-        assertEquals(1, f.totalEdgeCount());
+        assertEquals(1, g.totalEdgeCount());
 
         // should still only be one, similar values will round to one instance.
-        f.createAndAddVertex(new RVertexData(45.345));
-        f.createAndAddVertex(new RVertexData(45.335));
-        f.createAndAddVertex(new RVertexData(45.325));
-        f.createAndAddVertex(new RVertexData(45.3154));
-        f.createAndAddVertex(new RVertexData(45.536));
-        f.createAndAddVertex(new RVertexData(45.526));
-        f.createAndAddVertex(new RVertexData(45.556));
-        f.createAndAddVertex(new RVertexData(45.526));
+        g.addVertex(new RVertexData(45.345));
+        g.addVertex(new RVertexData(45.335));
+        g.addVertex(new RVertexData(45.325));
+        g.addVertex(new RVertexData(45.3154));
+        g.addVertex(new RVertexData(45.536));
+        g.addVertex(new RVertexData(45.526));
+        g.addVertex(new RVertexData(45.556));
+        g.addVertex(new RVertexData(45.526));
 
         // Again values should ronud accordingly and this should still render one
         // edge.
-        f.addEdge(new RVertexData(45.344), new RVertexData(45.534), 1.0);
+        g.addEdge(new RVertexData(45.344), new RVertexData(45.534), 1.0);
+        assertEquals(1, g.totalEdgeCount());
     }
 
     @Test
