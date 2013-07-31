@@ -7,12 +7,24 @@ import static org.junit.Assert.*;
 
 public class Equals {
     @Test
-    public void twoInstancesWithSameValueAreEqualExplicit() {
+    public void twoInstancesWithSameValueAreEqual() {
         assertTrue(new RVertexData(42.3).equals(new RVertexData(42.3)));
     }
 
     @Test
-    public void twoInstancesWithSimilarValueAreEqualExplicit() {
+    public void twoInstancesThatRoundTheSameAreEqual() {
         assertTrue(new RVertexData(42.3).equals(new RVertexData(42.34)));
+    }
+
+    @Test
+    public void twoOfTheSameInstanceAreEqual() {
+        RVertexData rd = new RVertexData(42.3);
+        assertTrue(rd.equals(rd));
+    }
+
+    @Test
+    public void twoOfTheSameInstanceAreEqualWithOperator() {
+        RVertexData rd = new RVertexData(42.3);
+        assertTrue(rd == rd);
     }
 }
