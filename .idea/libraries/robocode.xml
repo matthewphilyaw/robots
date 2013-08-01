@@ -2,6 +2,7 @@
   <library name="robocode">
     <CLASSES>
       <root url="jar://$USER_HOME$/software/robocode/libs/robocode.jar!/" />
+      <root url="jar://C:/robocode/libs/robocode.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

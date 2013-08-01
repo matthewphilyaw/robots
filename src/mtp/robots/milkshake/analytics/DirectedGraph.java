@@ -3,19 +3,7 @@ package mtp.robots.milkshake.analytics;
 import java.util.*;
 
 public class DirectedGraph<TVertexData, TEdgeData> {
-    HashMap<TVertexData, HashMap<TVertexData, TEdgeData>> vertices =
-           new HashMap<TVertexData, HashMap<TVertexData, TEdgeData>>();
-
-    public int vertexCount() { return this.vertices.size(); }
-
-    public int edgeCount() {
-        int count = 0;
-
-        for (HashMap<TVertexData, TEdgeData> d : this.vertices.values()) {
-           count += d.size();
-        }
-        return count;
-    }
+    Map<TVertexData, Map<TVertexData, TEdgeData>> vertices = new HashMap<TVertexData, Map<TVertexData, TEdgeData>>();
 
     public void addVertex(TVertexData u) {
         vertices.put(u, new HashMap<TVertexData, TEdgeData>());
@@ -25,13 +13,26 @@ public class DirectedGraph<TVertexData, TEdgeData> {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
         vertices.remove(u);
 
-        for (HashMap<TVertexData, TEdgeData> e : this.vertices.values()) {
+        for (Map<TVertexData, TEdgeData> e : this.vertices.values()) {
             e.remove(u);
         }
     }
 
+    public Map<TVertexData, Map<TVertexData, TEdgeData>> getVertices() {
+        return Collections.unmodifiableMap(vertices);
+    }
+
     public void removeVertices() {
         vertices.clear();
+    }
+
+    public int getTotalEdgeCount() {
+        int count = 0;
+        for (Map<TVertexData, TEdgeData> e : vertices.values())
+        {
+            count += e.size();
+        }
+        return count;
     }
 
     public void addEdge(TVertexData u, TVertexData v, TEdgeData data) throws Exception {
@@ -47,6 +48,7 @@ public class DirectedGraph<TVertexData, TEdgeData> {
 
     public void removeEdgesFor(TVertexData u) throws Exception {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
+        int numEdges = vertices.get(u).size();
         vertices.get(u).clear();
     }
 
@@ -56,8 +58,8 @@ public class DirectedGraph<TVertexData, TEdgeData> {
         }
     }
 
-    public Set<Map.Entry<TVertexData, TEdgeData>> getEdges(TVertexData u) throws Exception {
+    public Map<TVertexData, TEdgeData> getEdges(TVertexData u) throws Exception {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
-        return vertices.get(u).entrySet();
+        return Collections.unmodifiableMap(vertices.get(u));
     }
 }
