@@ -14,4 +14,8 @@ public class Common {
             g.addVertex(0);
         }
     }
+
+    public static <TVertexData, TEdgeData> DirectedGraph<TVertexData, TEdgeData> createFullyConnected(int numberVetices) {
+        return null;
+    }
 }

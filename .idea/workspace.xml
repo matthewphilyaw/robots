@@ -6,15 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95d0aa37-3a29-49d2-9d97-da4eb92614f4" name="Default" comment="added the robocode lib for windows box.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Edge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java" />
-      <change type="DELETED" beforePath="C:\Users\mphilyaw\IdeaProjects\robots\tests\mtp\robots\milkshake\test\analytics\DirectedGraph\EdgeCount.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\mphilyaw\IdeaProjects\robots\tests\mtp\robots\milkshake\test\analytics\DirectedGraph\VertexCount.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" afterPath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/robocode.xml" afterPath="$PROJECT_DIR$/.idea/libraries/robocode.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="robots.iws" />
@@ -45,7 +37,7 @@
     <file path="/Equals.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375389754531" ignored="false" />
     <file path="/AddVertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375385304430" ignored="false" />
     <file path="/RemoveVertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375383247232" ignored="false" />
-    <file path="/Common.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375384905024" ignored="false" />
+    <file path="/Common.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375460233695" ignored="false" />
     <file path="$PROJECT_DIR$/../Test/src/com/company/Main.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375388556494" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,10 +102,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Edge.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Edge.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="50" selection-start="815" selection-end="815" vertical-scroll-proportion="0.771518">
+            <state line="19" column="33" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#319#336#0" expanded="true" />
@@ -128,7 +120,7 @@
       <file leaf-file-name="HashCode.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="42" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
+            <state line="20" column="4" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,10 +137,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Common.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="9" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+            <state line="19" column="4" selection-start="617" selection-end="617" vertical-scroll-proportion="0.5054773">
               <folding />
             </state>
           </provider>
@@ -208,7 +200,6 @@
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/TotalEdgeCount.java" />
         <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/RemoveVertex.java" />
-        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/VertexCount.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/EdgeCount.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Edge.java" />
@@ -216,6 +207,7 @@
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" />
+        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
       </list>
     </option>
   </component>
@@ -811,10 +803,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
+    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="9" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+        <state line="40" column="8" selection-start="1158" selection-end="1158" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="4" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -833,25 +834,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="8" selection-start="1158" selection-end="1158" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="42" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Edge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="50" selection-start="815" selection-end="815" vertical-scroll-proportion="0.771518">
+        <state line="19" column="33" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#319#336#0" expanded="true" />
@@ -859,6 +844,13 @@
             <element signature="e#885#902#0" expanded="true" />
             <element signature="e#1164#1181#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="4" selection-start="617" selection-end="617" vertical-scroll-proportion="0.5054773">
+          <folding />
         </state>
       </provider>
     </entry>
