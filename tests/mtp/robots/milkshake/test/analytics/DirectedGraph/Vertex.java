@@ -4,6 +4,9 @@ import mtp.robots.milkshake.analytics.DirectedGraph;
 import mtp.robots.milkshake.analytics.RVertexData;
 
 import org.junit.Test;
+
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class Vertex {
@@ -49,5 +52,18 @@ public class Vertex {
         DirectedGraph<Integer, Float> g = new DirectedGraph<Integer, Float>();
         g.addVertex(1);
         assertTrue(g.getVertices().containsKey(1));
+    }
+
+    @Test
+    public void verifyVertexWasRemovedFromGraphAndAllEdges() throws Exception {
+        DirectedGraph<Integer, Double> g = Common.createFullyConnected(100);
+        Integer u = 33;
+        g.removeVertex(33);
+
+        Map<Integer, Map<Integer, Double>> verts = g.getVertices();
+        assertFalse(verts.containsKey(u));
+        for (Map<Integer, Double> e : verts.values()) {
+            assertFalse(e.containsKey(u));
+        }
     }
 }
