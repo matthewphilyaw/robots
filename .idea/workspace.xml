@@ -6,6 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95d0aa37-3a29-49d2-9d97-da4eb92614f4" name="Default" comment="added the robocode lib for windows box.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" afterPath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/General.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/General.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mtp/robots/milkshake/bot/MilkShake.java" afterPath="$PROJECT_DIR$/src/mtp/robots/milkshake/bot/MilkShake.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java" afterPath="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java" afterPath="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robots.iml" afterPath="$PROJECT_DIR$/robots.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -15,32 +22,32 @@
     <file path="/TargetingData.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1374468323551" ignored="false" />
     <file path="/TargetingPrediction.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375147418589" ignored="false" />
     <file path="/Peach.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1374339607652" ignored="false" />
-    <file path="/Dummy.txt" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375591905675" ignored="false" />
+    <file path="/Dummy.txt" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375606546217" ignored="false" />
     <file path="$PROJECT_DIR$/../matthew/src/mae/DeltaBot.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1373947024899" ignored="false" />
     <file path="/BulletInfo.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1374468368262" ignored="false" />
     <file path="/Point.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1374468306567" ignored="false" />
-    <file path="/MilkShake.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375081589462" ignored="false" />
+    <file path="/MilkShake.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375641527035" ignored="false" />
     <file path="/Graph.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375137587807" ignored="false" />
     <file path="/Node.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375081440894" ignored="false" />
-    <file path="/Vertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375471282425" ignored="false" />
+    <file path="/Vertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375641300248" ignored="false" />
     <file path="/IndexableVertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375140035091" ignored="false" />
-    <file path="/DirectedGraph.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375382396616" ignored="false" />
-    <file path="/RVertexData.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375146386093" ignored="false" />
+    <file path="/DirectedGraph.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375641338288" ignored="false" />
+    <file path="/RVertexData.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375598152243" ignored="false" />
     <file path="$PROJECT_DIR$/../ScaleTest/src/mtp/tests/Main.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375146918951" ignored="false" />
     <file path="/Main.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375388425665" ignored="false" />
     <file path="$PROJECT_DIR$/../ScaleTest/src/mtp/tests/RVertexData.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375146425300" ignored="false" />
     <file path="/fragment.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375157670912" ignored="false" />
     <file path="/DirectedGraphTest.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375236392539" ignored="false" />
     <file path="/TotalEdgeCount.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375241180073" ignored="false" />
-    <file path="/HashCode.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375389561153" ignored="false" />
+    <file path="/HashCode.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375598138341" ignored="false" />
     <file path="/VertexCount.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375385086366" ignored="false" />
     <file path="/EdgeCount.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375385165896" ignored="false" />
-    <file path="/Equals.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375389754531" ignored="false" />
+    <file path="/Equals.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375597965482" ignored="false" />
     <file path="/AddVertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375385304430" ignored="false" />
     <file path="/RemoveVertex.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375383247232" ignored="false" />
-    <file path="/Common.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375464195235" ignored="false" />
+    <file path="/Common.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375638006422" ignored="false" />
     <file path="$PROJECT_DIR$/../Test/src/com/company/Main.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375388556494" ignored="false" />
-    <file path="/General.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375466383647" ignored="false" />
+    <file path="/General.java" changelist="95d0aa37-3a29-49d2-9d97-da4eb92614f4" time="1375637555577" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +65,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -94,7 +102,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -108,7 +115,7 @@
       <file leaf-file-name="HashCode.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="4" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.0">
+            <state line="50" column="0" selection-start="1843" selection-end="1843" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,7 +124,7 @@
       <file leaf-file-name="Equals.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.0">
+            <state line="13" column="7" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,9 +133,8 @@
       <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0">
+            <state line="15" column="18" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#658#675#0" expanded="true" />
               </folding>
             </state>
@@ -138,18 +144,42 @@
       <file leaf-file-name="General.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/General.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="10" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+            <state line="53" column="8" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vertex.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Vertex.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="56" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.82125604">
+            <state line="78" column="0" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RVertexData.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MilkShake.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/bot/MilkShake.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="64" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.34562212">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#579#591#0" expanded="true" />
+                <element signature="e#801#822#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,7 +188,7 @@
       <file leaf-file-name="DirectedGraph.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="15" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
+            <state line="8" column="36" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -182,30 +212,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/RVertexDataTest.java" />
-        <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/BulletInfo.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/DirectedGraph/TotalEdgeCount.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/analytics/DirectedGraphTest.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/TotalEdgeCount.java" />
-        <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/RemoveVertex.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/VertexCount.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/EdgeCount.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Edge.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/AddVertex.java" />
-        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java" />
-        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
+        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java" />
+        <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/General.java" />
+        <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java" />
         <option value="$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java" />
+        <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java" />
+        <option value="$PROJECT_DIR$/src/mtp/robots/milkshake/bot/MilkShake.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="width" value="683" />
+    <option name="height" value="749" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -249,6 +277,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,16 +358,110 @@
               <option name="myItemId" value="robots" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="peach" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="milkshake" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="milkshake" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="milkshake" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analytics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -635,30 +759,30 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="0" width="683" height="749" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32674298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32624114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41207075" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4113475" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3259334" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3248227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24813233" sideWeight="0.67325705" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24016145" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49632892" sideWeight="0.7602837" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2397163" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -727,13 +851,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="15" selection-start="893" selection-end="893" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -764,13 +881,6 @@
         <state line="33" column="13" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.7875" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.2828125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/robocode.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -781,49 +891,68 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="15" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/Equals.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.0">
+        <state line="13" column="7" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/RVertexData/HashCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="4" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.0">
+        <state line="50" column="0" selection-start="1843" selection-end="1843" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
+    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/RVertexData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#658#675#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/General.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="10" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+        <state line="53" column="8" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="18" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#658#675#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/mtp/robots/milkshake/test/analytics/DirectedGraph/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="56" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.82125604">
+        <state line="78" column="0" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/analytics/DirectedGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="36" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mtp/robots/milkshake/bot/MilkShake.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="64" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.34562212">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#579#591#0" expanded="true" />
+            <element signature="e#801#822#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -66,4 +66,16 @@ public class Vertex {
             assertFalse(e.containsKey(u));
         }
     }
+
+    @Test
+    public void whenAddingSameVertexEdgeDataStaysInTact() throws Exception {
+        DirectedGraph<Integer, Double> g = Common.createFullyConnected(100);
+        Integer u = 50;
+
+        Map<Integer, Double> e = g.getEdges(u);
+        g.addVertex(u);
+        Map<Integer, Double> ea = g.getEdges(u);
+
+        assertEquals(e, ea);
+    }
 }

@@ -3,15 +3,24 @@ package mtp.robots.milkshake.bot;
 import mtp.robots.milkshake.analytics.*;
 import mtp.robots.milkshake.targeting.*;
 import robocode.*;
+import sun.org.mozilla.javascript.internal.ast.CatchClause;
+
 import java.awt.Graphics2D;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.List;
 import java.util.UUID;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.BufferedWriter;
 
 public class MilkShake extends AdvancedRobot {
     private static final UUID battleId = UUID.randomUUID();
     private static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
     private static final Object bulletsFiredLock = new Object();
+    private static final Object diGraphLock = new Object();
+    private static final DirectedGraph<RVertexData, Double> g = new DirectedGraph<RVertexData, Double>();
+    private RVertexData lastVertData;
 
     private final UUID roundId = UUID.randomUUID();
     private TargetingData td;
@@ -40,6 +49,17 @@ public class MilkShake extends AdvancedRobot {
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
+        synchronized (diGraphLock) {
+            RVertexData vert = new RVertexData(e.getHeading(), -1, RoundingMode.HALF_UP);
+            g.addVertex(vert);
+            if (lastVertData != null) {
+                try {
+                    g.addEdge(lastVertData, vert, 1.0);
+                } catch (Exception ex) { System.out.println(ex.getMessage()); }
+            }
+            lastVertData = vert;
+        }
+
         if (this.getGunTurnRemaining() > 0)
             return;
 
@@ -112,5 +132,26 @@ public class MilkShake extends AdvancedRobot {
         if (td == null) return;
         if (this.getTime() - td.getTimeCreated() > 5) { return; }
         td.renderPredictions(g);
+    }
+
+    @Override
+    public void onBattleEnded(BattleEndedEvent event) {
+        try {
+            File f = new File("graph.dat");
+            FileWriter fw = new FileWriter(f.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Map.Entry<RVertexData, Map<RVertexData, Double>> vert : g.getVertices().entrySet()) {
+                bw.append(Double.valueOf(vert.getKey().getScaledValue()).toString());
+                bw.append('|');
+                for (RVertexData ed : vert.getValue().keySet()) {
+                    bw.append(Double.valueOf(ed.getScaledValue()).toString());
+                    bw.append(',');
+                }
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e) { System.out.println(e.getMessage()); }
     }
 }

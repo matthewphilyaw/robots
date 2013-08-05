@@ -5,15 +5,22 @@ import java.math.RoundingMode;
 
 public class RVertexData {
     final double heading;
-    final int scale = 1;
+    final int scale;
+    final RoundingMode roundingMode;
 
-    public RVertexData(double heading) {
+    public RVertexData(double heading, int scale, RoundingMode roundingMode) {
         this.heading = heading;
+        this.scale = scale;
+        this.roundingMode = roundingMode;
+    }
+
+    public double getScaledValue() {
+        return fuzzyWuzzy();
     }
 
     @Override
     public int hashCode() {
-        return Double.valueOf(fuzzyWuzzy()).hashCode();
+         return Double.valueOf(fuzzyWuzzy()).hashCode();
     }
 
     @Override
@@ -26,7 +33,7 @@ public class RVertexData {
     }
 
     private double fuzzyWuzzy() {
-        BigDecimal scaled = BigDecimal.valueOf(this.heading).setScale(this.scale, RoundingMode.HALF_UP);
+        BigDecimal scaled = BigDecimal.valueOf(this.heading).setScale(this.scale, this.roundingMode);
         return scaled.doubleValue();
     }
 }

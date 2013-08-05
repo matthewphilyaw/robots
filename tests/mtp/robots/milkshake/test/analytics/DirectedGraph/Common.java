@@ -25,10 +25,30 @@ public class Common {
 
         for (Integer i : vertices.keySet()) {
             for (Integer k : vertices.keySet()) {
-                if (k == 1) continue;
+                if (k == i) continue;
                 g.addEdge(i, k, 1.0);
             }
         }
+        return g;
+    }
+
+    public static DirectedGraph<Integer, Double> createCircularlyConnected(int numberVetices, boolean fullyConnected) throws Exception {
+        DirectedGraph<Integer, Double> g = new DirectedGraph<Integer, Double>();
+        Common.addNVertices(g, numberVetices);
+
+        Map<Integer, Map<Integer, Double>> vertices = g.getVertices();
+        for (int i = 1; i < vertices.size(); i++) {
+            g.addEdge(i-1, i, 1.0);
+            if (fullyConnected) {
+                g.addEdge(i, i-1, 1.0);
+            }
+        }
+
+        if (vertices.size() > 1) {
+            g.addEdge(vertices.size() - 1, 0, 1.0);
+            if (fullyConnected) g.addEdge(0, vertices.size() - 1, 1.0);
+        }
+
         return g;
     }
 }

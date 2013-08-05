@@ -6,7 +6,7 @@ public class DirectedGraph<TVertexData, TEdgeData> {
     Map<TVertexData, Map<TVertexData, TEdgeData>> vertices = new HashMap<TVertexData, Map<TVertexData, TEdgeData>>();
 
     public void addVertex(TVertexData u) {
-        vertices.put(u, new HashMap<TVertexData, TEdgeData>());
+        if (!vertices.containsKey(u)) vertices.put(u, new HashMap<TVertexData, TEdgeData>());
     }
 
     public void removeVertex(TVertexData u) throws Exception {
