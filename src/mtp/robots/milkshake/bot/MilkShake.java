@@ -3,7 +3,6 @@ package mtp.robots.milkshake.bot;
 import mtp.robots.milkshake.analytics.*;
 import mtp.robots.milkshake.targeting.*;
 import robocode.*;
-import sun.org.mozilla.javascript.internal.ast.CatchClause;
 
 import java.awt.Graphics2D;
 import java.math.RoundingMode;
@@ -19,7 +18,7 @@ public class MilkShake extends AdvancedRobot {
     private static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
     private static final Object bulletsFiredLock = new Object();
     private static final Object diGraphLock = new Object();
-    private static final DirectedGraph<RVertexData, Double> g = new DirectedGraph<RVertexData, Double>();
+    private static final DirectedGraph<RVertexData, REdgeData> g = new DirectedGraph<RVertexData, REdgeData>();
     private RVertexData lastVertData;
 
     private final UUID roundId = UUID.randomUUID();
@@ -54,7 +53,8 @@ public class MilkShake extends AdvancedRobot {
             g.addVertex(vert);
             if (lastVertData != null) {
                 try {
-                    g.addEdge(lastVertData, vert, 1.0);
+                    if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
+                    g.getEdges(lastVertData).get(vert).incrementVisitedCount();
                 } catch (Exception ex) { System.out.println(ex.getMessage()); }
             }
             lastVertData = vert;
@@ -140,11 +140,13 @@ public class MilkShake extends AdvancedRobot {
             File f = new File("graph.dat");
             FileWriter fw = new FileWriter(f.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            for (Map.Entry<RVertexData, Map<RVertexData, Double>> vert : g.getVertices().entrySet()) {
+            for (Map.Entry<RVertexData, Map<RVertexData, REdgeData>> vert : g.getVertices().entrySet()) {
                 bw.append(Double.valueOf(vert.getKey().getScaledValue()).toString());
                 bw.append('|');
                 for (RVertexData ed : vert.getValue().keySet()) {
                     bw.append(Double.valueOf(ed.getScaledValue()).toString());
+                    bw.append(':');
+                    bw.append(Integer.valueOf(vert.getValue().get(ed).getVisitedCount()).toString());
                     bw.append(',');
                 }
                 bw.newLine();
