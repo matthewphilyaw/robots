@@ -19,6 +19,7 @@ public class MilkShake extends AdvancedRobot {
     private static final Object bulletsFiredLock = new Object();
     private static final Object diGraphLock = new Object();
     private static final DirectedGraph<RVertexData, REdgeData> g = new DirectedGraph<RVertexData, REdgeData>();
+    private static int maxEdgeVisit = 0;
     private RVertexData lastVertData;
 
     private final UUID roundId = UUID.randomUUID();
@@ -51,10 +52,13 @@ public class MilkShake extends AdvancedRobot {
         synchronized (diGraphLock) {
             RVertexData vert = new RVertexData(e.getHeading(), -1, RoundingMode.HALF_UP);
             g.addVertex(vert);
-            if (lastVertData != null) {
+            if (lastVertData != null && !vert.equals(lastVertData)) {
                 try {
                     if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
                     g.getEdges(lastVertData).get(vert).incrementVisitedCount();
+                    if (g.getEdges(lastVertData).get(vert).getVisitedCount() > maxEdgeVisit) maxEdgeVisit =
+                        g.getEdges(lastVertData).get(vert).getVisitedCount();
+
                 } catch (Exception ex) { System.out.println(ex.getMessage()); }
             }
             lastVertData = vert;
@@ -137,23 +141,45 @@ public class MilkShake extends AdvancedRobot {
     @Override
     public void onBattleEnded(BattleEndedEvent event) {
         try {
-            File f = new File("graph.dat");
+            File f = new File("graph.dot");
             FileWriter fw = new FileWriter(f.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            for (Map.Entry<RVertexData, Map<RVertexData, REdgeData>> vert : g.getVertices().entrySet()) {
-                bw.append(Double.valueOf(vert.getKey().getScaledValue()).toString());
-                bw.append('|');
-                for (RVertexData ed : vert.getValue().keySet()) {
-                    bw.append(Double.valueOf(ed.getScaledValue()).toString());
-                    bw.append(':');
-                    bw.append(Integer.valueOf(vert.getValue().get(ed).getVisitedCount()).toString());
-                    bw.append(',');
-                }
-                bw.newLine();
-            }
+            bw.write(this.renderGraph(g, maxEdgeVisit - (maxEdgeVisit / 3)));
             bw.flush();
             bw.close();
+
+            File r = new File("graph-not-filtered.dot");
+            FileWriter rw = new FileWriter(r.getAbsoluteFile());
+            BufferedWriter cw = new BufferedWriter(rw);
+            cw.write(g.toString());
+            cw.flush();
+            cw.close();
         }
         catch (Exception e) { System.out.println(e.getMessage()); }
+    }
+
+    private String renderGraph(DirectedGraph<RVertexData, REdgeData> g, int visitThreshold) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("digraph G {\n");
+        sb.append("    graph [layout=neato bgcolor=black fontcolor=white fontsize=40 overlap=prism sep=1 rankdir=LR label=");
+        sb.append(visitThreshold);
+        sb.append("]\n");
+        sb.append("    node [color=white, fontcolor=white]\n");
+        sb.append("    edge [color=white splines=ortho fontcolor=white]\n");
+
+        for (Map.Entry<RVertexData, Map<RVertexData, REdgeData>> vert : g.getVertices().entrySet()) {
+            for (Map.Entry<RVertexData, REdgeData> ed : vert.getValue().entrySet()) {
+                if (ed.getValue().getVisitedCount() < visitThreshold) continue;
+                sb.append("    ");
+                sb.append(vert.getKey().toString());
+                sb.append(" -> ");
+                sb.append(ed.getKey().toString());
+                sb.append(" [label=");
+                sb.append(ed.getValue().getVisitedCount());
+                sb.append("]\n");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }

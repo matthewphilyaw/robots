@@ -43,25 +43,17 @@ public class General {
         File f = new File(name);
         FileWriter fw = new FileWriter(f.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
-        for (Map.Entry<Integer, Map<Integer, Double>> vert : g.getVertices().entrySet()) {
-            bw.append(vert.getKey().toString());
-            bw.append('|');
-            for (Integer ed : vert.getValue().keySet()) {
-                bw.append(ed.toString());
-                bw.append(',');
-            }
-            bw.newLine();
-        }
+        bw.write(g.toString());
         bw.flush();
         bw.close();
     }
 
     @Test
-    public void dumpFullyConnected() throws Exception { writeOut(Common.createFullyConnected(50), "fully-connected.dat"); }
+    public void dumpFullyConnected() throws Exception { writeOut(Common.createFullyConnected(10), "fully-connected.dat"); }
 
     @Test
-    public void dumpCircular() throws Exception { writeOut(Common.createCircularlyConnected(100, false), "circular.dat"); }
+    public void dumpCircular() throws Exception { writeOut(Common.createCircularlyConnected(10, false), "circular.dat"); }
 
     @Test
-    public void dumpCircularFullyConnected() throws Exception { writeOut(Common.createCircularlyConnected(100, true), "circularfully.dat"); }
+    public void dumpCircularFullyConnected() throws Exception { writeOut(Common.createCircularlyConnected(10, true), "circularfully.dat"); }
 }

@@ -32,6 +32,11 @@ public class RVertexData {
 
     }
 
+    @Override
+    public String toString() {
+        return Double.valueOf(this.getScaledValue()).toString();
+    }
+
     private double fuzzyWuzzy() {
         BigDecimal scaled = BigDecimal.valueOf(this.heading).setScale(this.scale, this.roundingMode);
         return scaled.doubleValue();

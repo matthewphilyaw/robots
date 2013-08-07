@@ -62,4 +62,25 @@ public class DirectedGraph<TVertexData, TEdgeData> {
         if (!vertices.containsKey(u)) throw new Exception("u is not in graph");
         return Collections.unmodifiableMap(vertices.get(u));
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("digraph G {\n");
+        sb.append("    graph [layout=neato bgcolor=black overlap=prism sep=1]\n");
+        sb.append("    node [color=white, fontcolor=white]\n");
+        sb.append("    edge [color=white splines=ortho]\n");
+
+        for (Map.Entry<TVertexData, Map<TVertexData, TEdgeData>> vert : this.vertices.entrySet()) {
+            for (TVertexData ed : vert.getValue().keySet()) {
+                sb.append("    ");
+                sb.append(vert.getKey().toString());
+                sb.append(" -> ");
+                sb.append(ed.toString());
+                sb.append("\n");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 }
