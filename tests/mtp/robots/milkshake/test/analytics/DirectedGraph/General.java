@@ -1,8 +1,6 @@
 package mtp.robots.milkshake.test.analytics.DirectedGraph;
 
-import junit.extensions.TestSetup;
 import mtp.robots.milkshake.analytics.DirectedGraph;
-import mtp.robots.milkshake.analytics.RVertexData;
 
 import org.junit.After;
 import org.junit.Before;
