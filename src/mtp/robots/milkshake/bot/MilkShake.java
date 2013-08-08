@@ -2,6 +2,7 @@ package mtp.robots.milkshake.bot;
 
 import mtp.robots.milkshake.analytics.*;
 import mtp.robots.milkshake.targeting.*;
+import mtp.robots.milkshake.util.*;
 import robocode.*;
 
 import java.awt.Graphics2D;
@@ -14,19 +15,22 @@ import java.io.File;
 import java.io.BufferedWriter;
 
 public class MilkShake extends AdvancedRobot {
-    private static final UUID battleId = UUID.randomUUID();
-    private static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
-    private static final Object bulletsFiredLock = new Object();
-    private static final Object diGraphLock = new Object();
-    private static final DirectedGraph<RVertexData, REdgeData> g = new DirectedGraph<RVertexData, REdgeData>();
-    private static int maxEdgeVisit = 0;
-    private RVertexData lastVertData;
+    static final int LAST_HEADING_SIZE = 1;
+    static final UUID battleId = UUID.randomUUID();
 
-    private final UUID roundId = UUID.randomUUID();
-    private TargetingData td;
-    private boolean fire = false;
-    private TargetingPrediction solutionToFire;
-    private final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
+    static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
+    static final Object bulletsFiredLock = new Object();
+    static final Object diGraphLock = new Object();
+    static final DirectedGraph<RVertexData, REdgeData> g = new DirectedGraph<RVertexData, REdgeData>();
+    static int maxEdgeVisit = 0;
+
+    final UUID roundId = UUID.randomUUID();
+    final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
+    final RingBuffer<RVertexData> lastVertices = new RingBuffer<RVertexData>(LAST_HEADING_SIZE);
+
+    TargetingData td;
+    boolean fire = false;
+    TargetingPrediction solutionToFire;
 
     public void run() {
         this.setAdjustGunForRobotTurn(true);
@@ -52,7 +56,8 @@ public class MilkShake extends AdvancedRobot {
         synchronized (diGraphLock) {
             RVertexData vert = new RVertexData(e.getHeading(), -1, RoundingMode.HALF_UP);
             g.addVertex(vert);
-            if (lastVertData != null && !vert.equals(lastVertData)) {
+            if (lastVertices.getItems().size() > 0 && !vert.equals(lastVertices.getItems().get(0))) {
+                RVertexData lastVertData = lastVertices.getItems().get(0);
                 try {
                     if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
                     g.getEdges(lastVertData).get(vert).incrementVisitedCount();
@@ -61,7 +66,7 @@ public class MilkShake extends AdvancedRobot {
 
                 } catch (Exception ex) { System.out.println(ex.getMessage()); }
             }
-            lastVertData = vert;
+            lastVertices.add(vert);
         }
 
         if (this.getGunTurnRemaining() > 0)
