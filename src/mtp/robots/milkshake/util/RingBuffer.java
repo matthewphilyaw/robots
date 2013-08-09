@@ -1,5 +1,6 @@
 package mtp.robots.milkshake.util;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +30,23 @@ public class RingBuffer<T> {
 
     public int getSize() {
         return size;
+    }
+
+    public long getFnvHash() {
+        byte[] buff = new byte[buffer.size() * 4];
+        int count = 0;
+        for (T k : buffer) {
+            for (byte b : BigInteger.valueOf(k.hashCode()).toByteArray()) {
+                buff[count] = b;
+            }
+            count++;
+        }
+
+        long h = 2166136261L;
+        for (byte b : buff) {
+            h = (h * 16777619) ^ b;
+        }
+
+        return h;
     }
 }
