@@ -52,7 +52,6 @@ public class TargetingData {
 
     public List<TargetingPrediction> getTargetingSolutions(int minTicks) {
         List<TargetingPrediction> solutions = new ArrayList<TargetingPrediction>();
-        System.out.println("---");
         for (TargetingPrediction p : this.predictions) {
             int adjustedTicks = minTicks;
             double ticksToTurn = Math.abs(Math.toDegrees(p.getNormalizedToCannonAngle())) / Rules.GUN_TURN_RATE;
@@ -65,10 +64,8 @@ public class TargetingData {
             if (ticksToTurn > adjustedTicks)
                 continue;
 
-            System.out.println("Solution picked: " + p.getTime() + "\nTicks to turn: " + ticksToTurn + "\nAngle: " + Math.toDegrees(p.getNormalizedToCannonAngle()));
             solutions.add(p);
         }
-        System.out.println("---");
         return solutions;
     }
 

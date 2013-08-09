@@ -1,12 +1,16 @@
 package mtp.robots.milkshake.analytics;
 
-public class REdgeData {
-    int visited = -1;
-    public int getVisitedCount() { return this.visited; }
-    public void incrementVisitedCount() { this.visited++; }
+import java.util.*;
 
-    @Override
-    public String toString() {
-        return Integer.valueOf(visited).toString();    //To change body of overridden methods use File | Settings | File Templates.
+public class REdgeData {
+    Map<Long, Integer> paths = new HashMap<Long, Integer>();
+
+    public void add(Long hash) {
+        if (!paths.containsKey(hash)) { paths.put(hash, 0); }
+        paths.put(hash, paths.get(hash) + 1);
+    }
+
+    public Map<Long, Integer> getPaths() {
+        return Collections.unmodifiableMap(paths);
     }
 }

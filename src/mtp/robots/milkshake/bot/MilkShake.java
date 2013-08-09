@@ -60,9 +60,9 @@ public class MilkShake extends AdvancedRobot {
                 RVertexData lastVertData = lastVertices.getItems().get(0);
                 try {
                     if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
-                    g.getEdges(lastVertData).get(vert).incrementVisitedCount();
-                    if (g.getEdges(lastVertData).get(vert).getVisitedCount() > maxEdgeVisit) maxEdgeVisit =
-                        g.getEdges(lastVertData).get(vert).getVisitedCount();
+                    g.getEdges(lastVertData).get(vert).add(lastVertices.getFnvHash());
+                    if (g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash()) > maxEdgeVisit)
+                        maxEdgeVisit = g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash());
 
                 } catch (Exception ex) { System.out.println(ex.getMessage()); }
             }
@@ -120,7 +120,7 @@ public class MilkShake extends AdvancedRobot {
         }
     }
 
-    public void onRoundEnded(RoundEndedEvent event) {
+/*    public void onRoundEnded(RoundEndedEvent event) {
         double tTicks = 0;
         double avgTicks;
 
@@ -135,7 +135,7 @@ public class MilkShake extends AdvancedRobot {
                                        tTicks,
                                        bulletsThatHit.size(),
                                        bulletsFired.size()));
-    }
+    }*/
 
     public void onPaint(Graphics2D g) {
         if (td == null) return;
@@ -174,13 +174,17 @@ public class MilkShake extends AdvancedRobot {
 
         for (Map.Entry<RVertexData, Map<RVertexData, REdgeData>> vert : g.getVertices().entrySet()) {
             for (Map.Entry<RVertexData, REdgeData> ed : vert.getValue().entrySet()) {
-                if (ed.getValue().getVisitedCount() < visitThreshold) continue;
+                int sum = 0;
+                for (Integer i : ed.getValue().getPaths().values()) {
+                    sum += i;
+                }
+                if (sum < visitThreshold) continue;
                 sb.append("    ");
                 sb.append(vert.getKey().toString());
                 sb.append(" -> ");
                 sb.append(ed.getKey().toString());
                 sb.append(" [label=");
-                sb.append(ed.getValue().getVisitedCount());
+                sb.append(sum);
                 sb.append("]\n");
             }
         }
