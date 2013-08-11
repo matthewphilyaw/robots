@@ -15,13 +15,13 @@ import java.io.File;
 import java.io.BufferedWriter;
 
 public class MilkShake extends AdvancedRobot {
-    static final int LAST_HEADING_SIZE = 1;
+    static final int LAST_HEADING_SIZE = 3;
     static final UUID battleId = UUID.randomUUID();
 
     static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
     static final Object bulletsFiredLock = new Object();
     static final Object diGraphLock = new Object();
-    static final DirectedGraph<RVertexData, REdgeData> g = new DirectedGraph<RVertexData, REdgeData>();
+    static final DirectedGraph<RVertexData, REdgeDataPrintable> g = new DirectedGraph<RVertexData, REdgeDataPrintable>();
     static int maxEdgeVisit = 0;
 
     final UUID roundId = UUID.randomUUID();
@@ -53,21 +53,7 @@ public class MilkShake extends AdvancedRobot {
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
-        synchronized (diGraphLock) {
-            RVertexData vert = new RVertexData(e.getHeading(), -1, RoundingMode.HALF_UP);
-            g.addVertex(vert);
-            if (lastVertices.getItems().size() > 0 && !vert.equals(lastVertices.getItems().get(0))) {
-                RVertexData lastVertData = lastVertices.getItems().get(0);
-                try {
-                    if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
-                    g.getEdges(lastVertData).get(vert).add(lastVertices.getFnvHash());
-                    if (g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash()) > maxEdgeVisit)
-                        maxEdgeVisit = g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash());
-
-                } catch (Exception ex) { System.out.println(ex.getMessage()); }
-            }
-            lastVertices.add(vert);
-        }
+        updateGraphPrintable(g, new RVertexData(e.getHeading(), -1, RoundingMode.HALF_UP));
 
         if (this.getGunTurnRemaining() > 0)
             return;
@@ -149,7 +135,7 @@ public class MilkShake extends AdvancedRobot {
             File f = new File("graph.dot");
             FileWriter fw = new FileWriter(f.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(this.renderGraph(g, maxEdgeVisit - (maxEdgeVisit / 3)));
+            bw.write(this.renderGraphPrintable(g, maxEdgeVisit - (maxEdgeVisit / 3)));
             bw.flush();
             bw.close();
 
@@ -161,6 +147,45 @@ public class MilkShake extends AdvancedRobot {
             cw.close();
         }
         catch (Exception e) { System.out.println(e.getMessage()); }
+    }
+
+    private void updateGraphPrintable(DirectedGraph<RVertexData, REdgeDataPrintable> g, RVertexData vert) {
+        synchronized (diGraphLock) {
+            g.addVertex(vert);
+            if (lastVertices.getItems().size() > 0 && !vert.equals(lastVertices.getItems().get(0))) {
+                RVertexData lastVertData = lastVertices.getItems().get(0);
+                try {
+                    if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeDataPrintable());
+                    g.getEdges(lastVertData).get(vert).add(lastVertices.getFnvHash(), lastVertices.toString());
+                    if ((Integer)g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash())[1] > maxEdgeVisit)
+                        maxEdgeVisit = (Integer)g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash())[1];
+
+                } catch (Exception ex) { System.out.println(ex.getMessage()); }
+            }
+
+            if (lastVertices.getItems().size() > 0 && !vert.equals(lastVertices.getItems().get(0))) {
+                lastVertices.add(vert);
+            }
+            else if (lastVertices.getItems().size() <= 0)
+                lastVertices.add(vert);
+        }
+    }
+
+    private void updateGraph(DirectedGraph<RVertexData, REdgeData> g, RVertexData vert) {
+        synchronized (diGraphLock) {
+            g.addVertex(vert);
+            if (lastVertices.getItems().size() > 0 && !vert.equals(lastVertices.getItems().get(0))) {
+                RVertexData lastVertData = lastVertices.getItems().get(0);
+                try {
+                    if (!g.getEdges(lastVertData).containsKey(vert)) g.addEdge(lastVertData, vert, new REdgeData());
+                    g.getEdges(lastVertData).get(vert).add(lastVertices.getFnvHash());
+                    if (g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash()) > maxEdgeVisit)
+                        maxEdgeVisit = g.getEdges(lastVertData).get(vert).getPaths().get(lastVertices.getFnvHash());
+
+                } catch (Exception ex) { System.out.println(ex.getMessage()); }
+            }
+            lastVertices.add(vert);
+        }
     }
 
     private String renderGraph(DirectedGraph<RVertexData, REdgeData> g, int visitThreshold) {
@@ -183,9 +208,50 @@ public class MilkShake extends AdvancedRobot {
                 sb.append(vert.getKey().toString());
                 sb.append(" -> ");
                 sb.append(ed.getKey().toString());
-                sb.append(" [label=");
+                sb.append(" [label=\"");
                 sb.append(sum);
-                sb.append("]\n");
+                sb.append("\"]\n");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String renderGraphPrintable(DirectedGraph<RVertexData, REdgeDataPrintable> g, int visitThreshold) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("digraph G {\n");
+        sb.append("    graph [layout=dot bgcolor=black fontcolor=white fontsize=40 label=");
+        sb.append(visitThreshold);
+        sb.append("]\n");
+        sb.append("    node [color=white, fontcolor=white]\n");
+        sb.append("    edge [color=white splines=ortho fontcolor=white]\n");
+
+        for (Map.Entry<RVertexData, Map<RVertexData, REdgeDataPrintable>> vert : g.getVertices().entrySet()) {
+            for (Map.Entry<RVertexData, REdgeDataPrintable> ed : vert.getValue().entrySet()) {
+                Integer sum = 0;
+                Object name = "";
+                for (Object[] i : ed.getValue().getPaths().values()) {
+                    if ((Integer)i[1] > sum) { sum = (Integer)i[1]; name = i[0]; }
+                }
+                if (sum < visitThreshold) {
+                    continue;
+                    /*sb.append("    ");
+                    sb.append(vert.getKey().toString());
+                    sb.append(" -> ");
+                    sb.append(ed.getKey().toString());
+                    sb.append(" [color=\"#ff000040\"]");*/
+                }
+                else {
+                    sb.append("    ");
+                    sb.append(vert.getKey().toString());
+                    sb.append(" -> ");
+                    sb.append(ed.getKey().toString());
+                    sb.append(" [label=\"");
+                    sb.append(name.toString());
+                    sb.append(":");
+                    sb.append(sum.toString());
+                    sb.append("\"]\n");
+                }
             }
         }
         sb.append("}");

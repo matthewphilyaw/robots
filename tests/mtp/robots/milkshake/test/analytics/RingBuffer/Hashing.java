@@ -58,7 +58,7 @@ public class Hashing {
         RingBuffer<Integer> rb2 = new RingBuffer<Integer>(n);
 
         for (int i = 0; i < n; i++) { rb1.add(i); }
-        for (int i = n; i >= 0 ; --i) { rb2.add(i); }
+        for (int i = n - 1; i >= 0 ; i--) { rb2.add(i); }
 
         assertFalse(rb1.getFnvHash() == rb2.getFnvHash());
     }
