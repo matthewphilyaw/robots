@@ -22,7 +22,7 @@ public class RingBuffer<T> {
         List<T> items = new ArrayList<T>();
         if (buffer.size() == 0) { return items; }
 
-        for (int i = size - 1; i >=0; i--) {
+        for (int i = buffer.size() - 1; i >=0; i--) {
             items.add(buffer.get(i));
         }
         return items;

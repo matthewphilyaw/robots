@@ -1,8 +1,8 @@
-package mtp.robots.milkshake.analytics;
+package mtp.robots.milkshake.analytics.location;
 
 import java.util.*;
 
-public class REdgeData {
+public class LocationEdge {
     Map<Long, Integer> paths = new HashMap<Long, Integer>();
 
     public void add(Long hash) {

@@ -1,4 +1,4 @@
-package mtp.robots.milkshake.targeting;
+package mtp.robots.milkshake.analytics.targeting;
 
 import robocode.util.Utils;
 import robocode.*;
@@ -37,9 +37,9 @@ public class TargetingData {
             final int th = targetVel * (t);
             final int ah = assassinVel * (t);
 
-            final Point targetP = new Point ((int)(Math.sin(e.getHeadingRadians()) * th) + targetPos.getX(),
+            final Point targetP = new Point((int)(Math.sin(e.getHeadingRadians()) * th) + targetPos.getX(),
                                              (int)(Math.cos(e.getHeadingRadians()) * th) + targetPos.getY());
-            final Point assassinP = new Point ((int)(Math.sin(self.getHeadingRadians()) * ah) + assassinPos.getX(),
+            final Point assassinP = new Point((int)(Math.sin(self.getHeadingRadians()) * ah) + assassinPos.getX(),
                                                (int)(Math.cos(self.getHeadingRadians()) * ah) + assassinPos.getY());
 
             TargetingPrediction tp = new TargetingPrediction(targetP, assassinP, t);

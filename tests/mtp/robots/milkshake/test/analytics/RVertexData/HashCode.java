@@ -1,10 +1,9 @@
 package mtp.robots.milkshake.test.analytics.RVertexData;
 
-import mtp.robots.milkshake.analytics.RVertexData;
+import mtp.robots.milkshake.analytics.location.LocationVertex;
 
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
 
@@ -16,36 +15,36 @@ public class HashCode {
 
     @Test
     public void twoInstancesWithSameValueMatch() throws Exception {
-        assertTrue(new RVertexData(43.1, scale, roundingMode).hashCode() == new RVertexData(43.1, scale, roundingMode).hashCode());
+        assertTrue(new LocationVertex(43.1, scale, roundingMode).hashCode() == new LocationVertex(43.1, scale, roundingMode).hashCode());
     }
 
     @Test
     public void twoInstancesWithDifferentValuesDoNotMatch() throws Exception {
-        assertFalse(new RVertexData(43.1, scale, roundingMode).hashCode() == new RVertexData(43.2, scale, roundingMode).hashCode());
+        assertFalse(new LocationVertex(43.1, scale, roundingMode).hashCode() == new LocationVertex(43.2, scale, roundingMode).hashCode());
     }
 
     @Test
     public void twoInstancesThatRoundTheSameMatch() throws Exception {
-        assertTrue(new RVertexData(43.1, scale, roundingMode).hashCode() == new RVertexData(43.12, scale, roundingMode).hashCode());
+        assertTrue(new LocationVertex(43.1, scale, roundingMode).hashCode() == new LocationVertex(43.12, scale, roundingMode).hashCode());
     }
 
     @Test
     public void severalRandomInstancesThatRoundTheSameMatch() throws Exception {
-        RVertexData v = new RVertexData(1.2, scale, roundingMode);
+        LocationVertex v = new LocationVertex(1.2, scale, roundingMode);
         Random r = new Random();
         for (int i = 0; i < 1000; i++) {
             int num = r.nextInt(12500 - 12000) + 12000;
-            assertTrue(v.hashCode() == new RVertexData(num / 10000.0, scale, roundingMode).hashCode());
+            assertTrue(v.hashCode() == new LocationVertex(num / 10000.0, scale, roundingMode).hashCode());
         }
     }
 
     @Test
     public void severalRandomInstancesThatDoNotRoundTheSameMatch() throws Exception {
-        RVertexData v = new RVertexData(1.3, scale, roundingMode);
+        LocationVertex v = new LocationVertex(1.3, scale, roundingMode);
         Random r = new Random();
         for (int i = 0; i < 1000; i++) {
             int num = r.nextInt(12500 - 12000) + 12000;
-            assertFalse(v.hashCode() == new RVertexData(num / 10000.0, scale, roundingMode).hashCode());
+            assertFalse(v.hashCode() == new LocationVertex(num / 10000.0, scale, roundingMode).hashCode());
         }
     }
 }

@@ -1,6 +1,6 @@
-package mtp.robots.milkshake.analytics;
+package mtp.robots.milkshake.analytics.targeting;
 
-import mtp.robots.milkshake.targeting.TargetingPrediction;
+import mtp.robots.milkshake.analytics.targeting.TargetingPrediction;
 import robocode.Bullet;
 import java.util.UUID;
 

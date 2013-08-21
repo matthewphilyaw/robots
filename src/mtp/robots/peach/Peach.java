@@ -54,7 +54,7 @@ public class Peach extends AdvancedRobot {
         }
 
         try {
-            td = TargetingData.GenerateTargetingData(this, e, 30);
+            td = TargetingData.GenerateTargetingData(this, e, 10);
             //out.println(td);
 
             List<TargetingPrediction> solutions = td.getTargetingSolutions(1);

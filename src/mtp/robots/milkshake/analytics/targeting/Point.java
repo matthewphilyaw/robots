@@ -1,4 +1,4 @@
-package mtp.robots.milkshake.targeting;
+package mtp.robots.milkshake.analytics.targeting;
 
 public class Point {
     private int x;

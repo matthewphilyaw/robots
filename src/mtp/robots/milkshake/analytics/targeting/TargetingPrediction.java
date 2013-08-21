@@ -1,4 +1,4 @@
-package mtp.robots.milkshake.targeting;
+package mtp.robots.milkshake.analytics.targeting;
 
 import robocode.util.Utils;
 

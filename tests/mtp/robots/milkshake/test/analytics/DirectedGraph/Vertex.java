@@ -1,7 +1,7 @@
 package mtp.robots.milkshake.test.analytics.DirectedGraph;
 
 import mtp.robots.milkshake.analytics.DirectedGraph;
-import mtp.robots.milkshake.analytics.RVertexData;
+import mtp.robots.milkshake.analytics.location.LocationVertex;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class Vertex {
     @Test
     public void zeroOnGraphCreation() throws Exception {
-        DirectedGraph<RVertexData, Double> g = new DirectedGraph<RVertexData, Double>();
+        DirectedGraph<LocationVertex, Double> g = new DirectedGraph<LocationVertex, Double>();
         assertEquals(0, g.getVertices().size());
     }
 

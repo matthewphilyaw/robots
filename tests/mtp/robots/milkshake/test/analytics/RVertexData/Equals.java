@@ -1,8 +1,7 @@
 package mtp.robots.milkshake.test.analytics.RVertexData;
 
-import mtp.robots.milkshake.analytics.RVertexData;
+import mtp.robots.milkshake.analytics.location.LocationVertex;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.math.RoundingMode;
@@ -16,43 +15,43 @@ public class Equals {
 
     @Test
     public void twoInstancesWithSameValueAreEqual() {
-        assertTrue(new RVertexData(42.3, scale, roundingMode).equals(new RVertexData(42.3, scale, roundingMode)));
+        assertTrue(new LocationVertex(42.3, scale, roundingMode).equals(new LocationVertex(42.3, scale, roundingMode)));
     }
 
     @Test
     public void twoInstancesThatRoundTheSameAreEqual() {
-        assertTrue(new RVertexData(42.3, scale, roundingMode).equals(new RVertexData(42.34, scale, roundingMode)));
+        assertTrue(new LocationVertex(42.3, scale, roundingMode).equals(new LocationVertex(42.34, scale, roundingMode)));
     }
 
     @Test
     public void twoOfTheSameInstanceAreEqual() {
-        RVertexData rd = new RVertexData(42.3, scale, roundingMode);
+        LocationVertex rd = new LocationVertex(42.3, scale, roundingMode);
         assertTrue(rd.equals(rd));
     }
 
     @Test
     public void twoOfTheSameInstanceAreEqualWithOperator() {
-        RVertexData rd = new RVertexData(42.3, scale, roundingMode);
+        LocationVertex rd = new LocationVertex(42.3, scale, roundingMode);
         assertTrue(rd == rd);
     }
 
     @Test
     public void severalRandomInstancesThatRoundTheSameAreEqual() throws Exception {
-        RVertexData v = new RVertexData(1.2, scale, roundingMode);
+        LocationVertex v = new LocationVertex(1.2, scale, roundingMode);
         Random r = new Random();
         for (int i = 0; i < 1000; i++) {
             int num = r.nextInt(12500 - 12000) + 12000;
-            assertTrue(v.equals(new RVertexData(num / 10000.0, scale, roundingMode)));
+            assertTrue(v.equals(new LocationVertex(num / 10000.0, scale, roundingMode)));
         }
     }
 
     @Test
     public void severalRandomInstancesThatDoNotRoundTheSameAreNotEqual() throws Exception {
-        RVertexData v = new RVertexData(1.3, scale, roundingMode);
+        LocationVertex v = new LocationVertex(1.3, scale, roundingMode);
         Random r = new Random();
         for (int i = 0; i < 1000; i++) {
             int num = r.nextInt(12500 - 12000) + 12000;
-            assertFalse(v.equals(new RVertexData(num / 10000.0, scale, roundingMode)));
+            assertFalse(v.equals(new LocationVertex(num / 10000.0, scale, roundingMode)));
         }
     }
 }
