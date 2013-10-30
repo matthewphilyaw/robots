@@ -5,7 +5,7 @@ import mtp.robots.milkshake.analytics.DirectedGraph;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class Edge {
+public class EdgeTestCase {
     @Test
     public void zeroOnGraphCreation() throws Exception {
         DirectedGraph<Integer, Double> g = new DirectedGraph<Integer, Double>();

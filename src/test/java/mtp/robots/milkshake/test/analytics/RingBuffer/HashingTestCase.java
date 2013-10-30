@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
 
-public class Hashing {
+public class HashingTestCase {
 
     private void ringBufferFilledRandomlyCheckHash(int n) {
         RingBuffer<Integer> rb1 = new RingBuffer<Integer>(n);

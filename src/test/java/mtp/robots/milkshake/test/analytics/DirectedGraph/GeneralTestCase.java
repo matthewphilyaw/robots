@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class General {
+public class GeneralTestCase {
     DirectedGraph<Integer, Double> g;
     int count = 100;
 
@@ -47,11 +47,17 @@ public class General {
     }
 
     @Test
-    public void dumpFullyConnected() throws Exception { writeOut(Common.createFullyConnected(10), "fully-connected.dat"); }
+    public void dumpFullyConnected() throws Exception {
+        writeOut(Common.createFullyConnected(10), "src/test/fully-connected.dot"); 
+    }
 
     @Test
-    public void dumpCircular() throws Exception { writeOut(Common.createCircularlyConnected(10, false), "circular.dat"); }
+    public void dumpCircular() throws Exception {
+        writeOut(Common.createCircularlyConnected(10, false), "src/test/circular.dot"); 
+    }
 
     @Test
-    public void dumpCircularFullyConnected() throws Exception { writeOut(Common.createCircularlyConnected(10, true), "circularfully.dat"); }
+    public void dumpCircularFullyConnected() throws Exception {
+        writeOut(Common.createCircularlyConnected(10, true), "src/test/circularfully.dot");
+    }
 }

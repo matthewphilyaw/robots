@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-public class HashCode {
+public class HashCodeTestCase {
     int scale = 1;
     RoundingMode roundingMode = RoundingMode.HALF_UP;
 

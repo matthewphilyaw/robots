@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-public class General {
+public class GeneralTestCase {
     @Test
     public void VerifyKeepsLast3() {
         int n = 3;

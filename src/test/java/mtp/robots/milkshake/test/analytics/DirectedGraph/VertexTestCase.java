@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class Vertex {
+public class VertexTestCase {
     @Test
     public void zeroOnGraphCreation() throws Exception {
         DirectedGraph<LocationVertex, Double> g = new DirectedGraph<LocationVertex, Double>();

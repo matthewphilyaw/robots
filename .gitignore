@@ -6,4 +6,4 @@
 *.ear
 *.dat
 
-workspace.xml
+target
