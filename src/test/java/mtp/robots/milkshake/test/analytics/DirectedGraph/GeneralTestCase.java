@@ -48,16 +48,16 @@ public class GeneralTestCase {
 
     @Test
     public void dumpFullyConnected() throws Exception {
-        writeOut(Common.createFullyConnected(10), "src/test/fully-connected.dot"); 
+        writeOut(Common.createFullyConnected(10), "target/fully-connected.dot"); 
     }
 
     @Test
     public void dumpCircular() throws Exception {
-        writeOut(Common.createCircularlyConnected(10, false), "src/test/circular.dot"); 
+        writeOut(Common.createCircularlyConnected(10, false), "target/circular.dot"); 
     }
 
     @Test
     public void dumpCircularFullyConnected() throws Exception {
-        writeOut(Common.createCircularlyConnected(10, true), "src/test/circularfully.dot");
+        writeOut(Common.createCircularlyConnected(10, true), "target/circularfully.dot");
     }
 }
