@@ -5,27 +5,27 @@ import robocode.ScannedRobotEvent;
 import java.util.*;
 
 public class TrailPath implements LocationPrediction {
-    Integer trailHash;
-    Integer visitCount;
-    Integer totalTicksForPath;
+    Long trailHash;
+    Long visitCount;
+    Long totalTicksForPath;
     List<ScannedRobotEvent> scannedRobotEvents;
 
-    public TrailPath(Integer trailHash) {
-        trailHash = trailHash;
+    public TrailPath(Long trailHash) {
+        this.trailHash = trailHash;
     }
 
     public List<ScannedRobotEvent> getScannedRobotEvents() {
         return Collections.unmodifiableList(scannedRobotEvents);
     }
 
-    public Integer getAvgTicksFromRoot() {
+    public Long getAvgTicksFromRoot() {
         return totalTicksForPath / visitCount; 
     } 
-    public Integer getVisitCount() {
+    public Long getVisitCount() {
         return visitCount;
     }
 
-    public void addScannedRobotEvent(ScannedRobotEvent e, Integer ticksFromRoot) {
+    public void addScannedRobotEvent(ScannedRobotEvent e, Long ticksFromRoot) {
         scannedRobotEvents.add(e);
         totalTicksForPath += ticksFromRoot;
         visitCount++;

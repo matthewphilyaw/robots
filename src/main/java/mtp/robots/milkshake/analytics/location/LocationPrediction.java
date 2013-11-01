@@ -7,6 +7,6 @@ import java.util.*;
 
 public interface LocationPrediction {
     List<ScannedRobotEvent> getScannedRobotEvents();
-    Integer getAvgTicksFromRoot();
-    Integer getVisitCount();
+    Long getAvgTicksFromRoot();
+    Long getVisitCount();
 }

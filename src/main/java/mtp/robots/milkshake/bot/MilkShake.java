@@ -22,7 +22,7 @@ public class MilkShake extends AdvancedRobot {
     static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
     static final Object bulletsFiredLock = new Object();
     static final Object LELock = new Object();
-    static final LocationEngine le = new LocationManager(LocationEngineType.TRAILPREDICTION).getLocationEngine();
+    static final LocationEngine le = new LocationManager(LocationEngineType.TRAILENGINE).getLocationEngine();
 
     final UUID roundId = UUID.randomUUID();
     final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();

@@ -33,11 +33,16 @@ public class TrailPredictionEngine implements LocationEngine  {
     }
 
     public List<LocationPrediction> getNextNPredictions(Integer n, AdvancedRobot host, ScannedRobotEvent target) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
+    }
+
+
+    public List<LocationPrediction> getPredictionsForNTicks(Integer ticks, AdvancedRobot host, ScannedRobotEvent target) {
+        return null;
     }
 
     public Double getSuccessRate() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     public String print() {

@@ -1,5 +1,6 @@
 package mtp.robots.milkshake.analytics.location;
 
+import mtp.robots.milkshake.analytics.location.engines.TrailEngine;
 import mtp.robots.milkshake.analytics.location.engines.TrailPredictionEngine;
 
 public class LocationManager {
@@ -18,6 +19,8 @@ public class LocationManager {
             switch (engineType) {
                 case TRAILPREDICTION:
                     return new TrailPredictionEngine();
+                case TRAILENGINE:
+                    return new TrailEngine();
                 default:
                     throw new Exception("Could not locate engine type");
             }

@@ -5,18 +5,34 @@ import mtp.robots.milkshake.util.RingBuffer;
 import java.util.*;
 
 public class TrailData {
-    RingBuffer trailBuffer;
-    Map<Integer, TrailPath> paths = new HashMap<Integer, TrailPath>();
+    Long trailHash;
+    Long lastUpdateTick;
+    Position position;
+    Map<Long, TrailPath> paths = new HashMap<Long, TrailPath>();
 
-    public TrailData(RingBuffer trailBuffer) {
-        this.trailBuffer = trailBuffer;
+    public TrailData(Long trailHash, Long lastUpdateTick, Position position) {
+        this.trailHash = trailHash;
+        this.lastUpdateTick = lastUpdateTick;
+        this.position = position;
     }
 
-    public RingBuffer getTrailBuffer() {
-        return trailBuffer;
+    public Long getTrailHash() {
+        return this.trailHash;
     }
 
-    public Map<Integer, TrailPath> getPaths() {
-        return paths;
+    public Map<Long, TrailPath> getPaths() {
+        return this.paths;
+    }
+
+    public void setLastUpdateTick(Long lastUpdateTick) {
+        this.lastUpdateTick = lastUpdateTick;
+    }
+
+    public Long getLastUpdateTick() {
+        return lastUpdateTick;
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 }
