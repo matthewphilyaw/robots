@@ -1,7 +1,12 @@
 package mtp.robots.milkshake.analytics.location;
 
+import robocode.AdvancedRobot;
+import robocode.ScannedRobotEvent;
+
+import java.util.*;
+
 public interface LocationPrediction {
-    Double getHeading();
-    Double getVelocity();
-    Integer getTicksFromLastPrediction();
+    List<ScannedRobotEvent> getScannedRobotEvents();
+    Integer getAvgTicksFromRoot();
+    Integer getVisitCount();
 }

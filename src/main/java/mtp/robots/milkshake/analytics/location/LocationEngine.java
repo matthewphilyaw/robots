@@ -8,6 +8,7 @@ import java.util.List;
 public interface LocationEngine {
     void updateEngine(AdvancedRobot host, ScannedRobotEvent target);
     List<LocationPrediction> getNextNPredictions(Integer n, AdvancedRobot host, ScannedRobotEvent target);
+    List<LocationPrediction> getPredictionsForNTicks(Integer ticks, AdvancedRobot host, ScannedRobotEvent target);
     Double getSuccessRate();
     String print();
 }
