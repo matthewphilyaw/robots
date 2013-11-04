@@ -1,5 +1,6 @@
 package mtp.robots.milkshake.analytics.location;
 
+import java.math.*;
 import java.util.*;
 
 public class LocationEdge {

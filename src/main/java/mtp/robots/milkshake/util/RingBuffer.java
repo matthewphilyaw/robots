@@ -28,11 +28,23 @@ public class RingBuffer<T> {
         return items;
     }
 
+    public T getHead() {
+        return this.buffer.get(this.size - 1);
+    }
+
+    public RingBuffer copyCurrentBuffer() {
+        RingBuffer copy = new RingBuffer(this.size);
+        for (int i = 0; i < this.getSize(); i++) {
+            copy.add(this.buffer.get(i));
+        }
+        return copy;
+    }
+
     public int getSize() {
         return size;
     }
 
-    public long getFnvHash() {
+    public Long getFnvHash() {
         byte[] buff = new byte[buffer.size() * 4];
         int count = 0;
         for (T k : buffer) {
@@ -42,11 +54,12 @@ public class RingBuffer<T> {
             count++;
         }
 
-        long h = 2166136261L;
+        Long h = 2166136261L;
         for (byte b : buff) {
             h = (h * 16777619) ^ b;
         }
-
+       
         return h;
     }
 }
+

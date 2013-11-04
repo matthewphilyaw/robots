@@ -1,21 +1,27 @@
 package mtp.robots.milkshake.analytics.location;
 
+import robocode.ScannedRobotEvent;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Position {
-    final double heading;
     final int scale;
     final RoundingMode roundingMode;
+    final ScannedRobotEvent scannedRobotEvent; 
 
-    public Position(double heading, int scale, RoundingMode roundingMode) {
-        this.heading = heading;
+    public Position(ScannedRobotEvent scannedRobotEvent, int scale, RoundingMode roundingMode) {
         this.scale = scale;
         this.roundingMode = roundingMode;
+        this.scannedRobotEvent = scannedRobotEvent;
     }
 
     public double getScaledValue() {
-        return fuzzyWuzzy();
+        return this.fuzzyWuzzy();
+    }
+
+    public ScannedRobotEvent getScannedRobotEvent() {
+        return this.scannedRobotEvent;
     }
 
     @Override
@@ -38,7 +44,7 @@ public class Position {
     }
 
     private double fuzzyWuzzy() {
-        BigDecimal scaled = BigDecimal.valueOf(this.heading).setScale(this.scale, this.roundingMode);
+        BigDecimal scaled = BigDecimal.valueOf(this.scannedRobotEvent.getHeading()).setScale(this.scale, this.roundingMode);
         return scaled.doubleValue();
     }
 }

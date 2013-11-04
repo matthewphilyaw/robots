@@ -5,6 +5,7 @@ import mtp.robots.milkshake.util.RingBuffer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.math.*;
 import java.util.List;
 
 public class GeneralTestCase {

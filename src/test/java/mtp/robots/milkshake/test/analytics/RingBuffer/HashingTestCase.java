@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 import java.util.Random;
+import java.math.*;
 
 public class HashingTestCase {
 
@@ -36,9 +37,9 @@ public class HashingTestCase {
                 break;
             }
         }
-        assertEquals(contentsMatch, rb1.getFnvHash() == rb2.getFnvHash());
-    }
 
+        assertEquals(contentsMatch, rb1.getFnvHash().equals(rb2.getFnvHash()));
+    }
 
     @Test
     public void TwoRingBuffersWithSameContentsProduceSameHash() {

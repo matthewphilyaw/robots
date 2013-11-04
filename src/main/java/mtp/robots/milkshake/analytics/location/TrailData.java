@@ -2,22 +2,22 @@ package mtp.robots.milkshake.analytics.location;
 
 import mtp.robots.milkshake.util.RingBuffer;
 
+import java.math.*;
 import java.util.*;
 
 public class TrailData {
-    Long trailHash;
+    RingBuffer<Position> trail;
     Long lastUpdateTick;
     Position position;
     Map<Long, TrailPath> paths = new HashMap<Long, TrailPath>();
 
-    public TrailData(Long trailHash, Long lastUpdateTick, Position position) {
-        this.trailHash = trailHash;
+    public TrailData(RingBuffer<Position> trail, Long lastUpdateTick) {
+        this.trail = trail;
         this.lastUpdateTick = lastUpdateTick;
-        this.position = position;
     }
 
-    public Long getTrailHash() {
-        return this.trailHash;
+    public RingBuffer<Position> getTrail() {
+        return this.trail;
     }
 
     public Map<Long, TrailPath> getPaths() {
@@ -33,6 +33,6 @@ public class TrailData {
     }
 
     public Position getPosition() {
-        return this.position;
+        return this.trail.getHead();
     }
 }
