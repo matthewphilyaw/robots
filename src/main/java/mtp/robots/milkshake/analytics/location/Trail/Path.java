@@ -1,24 +1,22 @@
-package mtp.robots.milkshake.analytics.location;
+package mtp.robots.milkshake.analytics.location.Trail;
 
-import mtp.robots.milkshake.util.*;
-
+import mtp.robots.milkshake.analytics.location.Prediction;
 import robocode.ScannedRobotEvent;
 
-import java.math.*;
 import java.util.*;
 
-public class TrailPath implements LocationPrediction {
-    final RingBuffer<Position> trail;
+public class Path implements Prediction {
+    Integer trailHash;
     Long visitCount = 0L;
     Long totalTicksForPath = 0L;
     List<ScannedRobotEvent> scannedRobotEvents = new ArrayList<ScannedRobotEvent>();
 
-    public TrailPath(RingBuffer<Position> trail) {
-        this.trail = trail;
+    public Path(Integer trailHash) {
+        this.trailHash = trailHash;
     }
 
-    public RingBuffer<Position> getTrail() {
-        return this.trail;
+    public Integer getTrailHash() {
+        return this.trailHash;
     }
 
     public List<ScannedRobotEvent> getScannedRobotEvents() {

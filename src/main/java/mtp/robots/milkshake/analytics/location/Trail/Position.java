@@ -1,4 +1,4 @@
-package mtp.robots.milkshake.analytics.location;
+package mtp.robots.milkshake.analytics.location.Trail;
 
 import robocode.ScannedRobotEvent;
 

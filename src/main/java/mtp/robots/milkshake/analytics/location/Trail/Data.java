@@ -1,17 +1,16 @@
-package mtp.robots.milkshake.analytics.location;
+package mtp.robots.milkshake.analytics.location.Trail;
 
 import mtp.robots.milkshake.util.RingBuffer;
 
-import java.math.*;
 import java.util.*;
 
-public class TrailData {
+public class Data {
     RingBuffer<Position> trail;
     Long lastUpdateTick;
     Position position;
-    Map<Long, TrailPath> paths = new HashMap<Long, TrailPath>();
+    Map<Integer, Path> paths = new HashMap<Integer, Path>();
 
-    public TrailData(RingBuffer<Position> trail, Long lastUpdateTick) {
+    public Data(RingBuffer<Position> trail, Long lastUpdateTick) {
         this.trail = trail;
         this.lastUpdateTick = lastUpdateTick;
     }
@@ -20,7 +19,7 @@ public class TrailData {
         return this.trail;
     }
 
-    public Map<Long, TrailPath> getPaths() {
+    public Map<Integer, Path> getPaths() {
         return this.paths;
     }
 

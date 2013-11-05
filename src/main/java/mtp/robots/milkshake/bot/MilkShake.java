@@ -4,7 +4,6 @@ import mtp.robots.milkshake.analytics.location.*;
 import mtp.robots.milkshake.analytics.targeting.BulletInfo;
 import mtp.robots.milkshake.analytics.targeting.TargetingData;
 import mtp.robots.milkshake.analytics.targeting.TargetingPrediction;
-import mtp.robots.milkshake.util.*;
 import robocode.*;
 
 import java.awt.Graphics2D;
@@ -16,17 +15,15 @@ import java.io.File;
 import java.io.BufferedWriter;
 
 public class MilkShake extends AdvancedRobot {
-    static final int LAST_HEADING_SIZE = 1;
     static final UUID battleId = UUID.randomUUID();
 
     static final List<BulletInfo> bulletsFired = new ArrayList<BulletInfo>();
     static final Object bulletsFiredLock = new Object();
     static final Object LELock = new Object();
-    static final LocationEngine le = new LocationManager(LocationEngineType.TRAILENGINE).getLocationEngine();
+    static final Engine le = new Manager(EngineType.TRAIL).getLocationEngine();
 
     final UUID roundId = UUID.randomUUID();
     final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
-    final RingBuffer<LocationVertex> lastVertices = new RingBuffer<LocationVertex>(LAST_HEADING_SIZE);
 
     TargetingData td;
     boolean fire = false;

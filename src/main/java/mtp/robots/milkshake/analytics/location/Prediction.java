@@ -5,7 +5,7 @@ import robocode.ScannedRobotEvent;
 
 import java.util.*;
 
-public interface LocationPrediction {
+public interface Prediction {
     List<ScannedRobotEvent> getScannedRobotEvents();
     Long getAvgTicksFromRoot();
     Long getVisitCount();
