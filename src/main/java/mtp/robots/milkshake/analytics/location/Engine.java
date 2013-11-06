@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface Engine {
     void updateEngine(AdvancedRobot host, ScannedRobotEvent target);
-    List<Prediction> getNextNPredictions(Integer n, AdvancedRobot host, ScannedRobotEvent target);
-    List<Prediction> getPredictionsForNTicks(Integer ticks, AdvancedRobot host, ScannedRobotEvent target);
+    List<Prediction> getNextNPredictions(Integer n);
+    List<Prediction> getPredictionsForNTicks(Integer ticks);
     Double getSuccessRate();
     String print();
 }

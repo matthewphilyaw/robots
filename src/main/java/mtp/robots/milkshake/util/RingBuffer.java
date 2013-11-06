@@ -33,7 +33,8 @@ public class RingBuffer<T> {
 
     public RingBuffer<T> copyCurrentBuffer() {
         RingBuffer<T> copy = new RingBuffer<T>(this.size);
-        for (int i = 0; i < this.getSize(); i++) {
+        int size = this.buffer.size() < this.size ? this.buffer.size() : this.size;
+        for (int i = 0; i < size; i++) {
             copy.add(this.buffer.get(i));
         }
         return copy;

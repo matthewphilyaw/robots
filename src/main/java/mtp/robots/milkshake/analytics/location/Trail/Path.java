@@ -5,11 +5,10 @@ import robocode.ScannedRobotEvent;
 
 import java.util.*;
 
-public class Path implements Prediction {
+public class Path {
     Integer trailHash;
     Long visitCount = 0L;
     Long totalTicksForPath = 0L;
-    List<ScannedRobotEvent> scannedRobotEvents = new ArrayList<ScannedRobotEvent>();
 
     public Path(Integer trailHash) {
         this.trailHash = trailHash;
@@ -19,21 +18,16 @@ public class Path implements Prediction {
         return this.trailHash;
     }
 
-    public List<ScannedRobotEvent> getScannedRobotEvents() {
-        return Collections.unmodifiableList(scannedRobotEvents);
-    }
-
-    public Long getAvgTicksFromRoot() {
-        return totalTicksForPath / visitCount; 
+    public Long getAvgTicksFromLastPrediction() {
+        return this.totalTicksForPath / this.visitCount;
     } 
 
     public Long getVisitCount() {
-        return visitCount;
+        return this.visitCount;
     }
 
-    public void addScannedRobotEvent(ScannedRobotEvent e, Long ticksFromRoot) {
-        scannedRobotEvents.add(e);
-        totalTicksForPath += ticksFromRoot;
-        visitCount++;
+    public void updatePath(Long ticksFromLastTrail) {
+        this.totalTicksForPath += ticksFromLastTrail;
+        this.visitCount++;
     }
 }
