@@ -28,7 +28,8 @@ public class RingBuffer<T> {
     }
 
     public T getHead() {
-        return this.buffer.get(this.size - 1);
+        int size = this.buffer.size() < this.size ? this.buffer.size() : this.size;
+        return this.buffer.get(size - 1);
     }
 
     public RingBuffer<T> copyCurrentBuffer() {

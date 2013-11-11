@@ -29,10 +29,72 @@
       <version>1.8.2.0</version>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.battle</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.core</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.repository</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.ui</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.ui.editor</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.host</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>robocode.sound</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>picocontainer</artifactId>
+          <version>2.14.2</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>codesize</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.robocode</groupId>
+          <artifactId>roborumble</artifactId>
+          <version>1.8.2.0</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
+
+  <!--
   <build>
     <plugins>
-      <!-- After compilation, copy robot class(es) to robocode.home/robots for testing. -->
+       After compilation, copy robot class(es) to robocode.home/robots for testing.
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.6</version>
@@ -55,7 +117,7 @@
         </executions>
       </plugin>
 
-      <!-- Delete the robot from the robocode.home/robots as part of clean target. -->
+       Delete the robot from the robocode.home/robots as part of clean target.
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <version>2.5</version>
@@ -68,6 +130,6 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>
+  </build>-->
 </project>
 

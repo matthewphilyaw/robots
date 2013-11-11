@@ -1,8 +1,10 @@
 package mtp.robots.milkshake.analytics.location.Trail;
 
+import mtp.robots.milkshake.util.Point;
 import mtp.robots.milkshake.util.RingBuffer;
 import robocode.AdvancedRobot;
 import robocode.ScannedRobotEvent;
+import robocode.util.Utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,38 +16,33 @@ public class Data {
 
     final RoundingMode roundingMode = RoundingMode.HALF_UP;
     final List<ScannedRobotEvent> targetHistory = new ArrayList<ScannedRobotEvent>();
+    final Map<Integer, Path> paths = new HashMap<Integer, Path>();
     final RingBuffer<Data> trail;
 
-    final Double hostHeading;
-    final Double hostVelocity;
     final Double targetHeading;
     final Double targetVelocity;
-    final Double targetDistance;
-    final Double targetBearing;
 
+    Point targetPoint;
     Long lastUpdateTick;
-    Map<Integer, Path> paths = new HashMap<Integer, Path>();
 
     public Data(AdvancedRobot host, ScannedRobotEvent target, RingBuffer<Data> trail) {
         this.trail = trail;
-        this.lastUpdateTick = target.getTime();
 
-        this.hostHeading = Data.fuzzyWuzzy(host.getHeading(), scale, roundingMode);
-        this.hostVelocity = Data.fuzzyWuzzy(host.getVelocity(), 0, roundingMode);
-        this.targetHeading = Data.fuzzyWuzzy(target.getHeading(), scale, roundingMode);
-        this.targetVelocity = Data.fuzzyWuzzy(target.getVelocity(), 0, roundingMode);
-        this.targetDistance = Data.fuzzyWuzzy(target.getDistance(), scale, roundingMode);
-        this.targetBearing = Data.fuzzyWuzzy(target.getBearing(), scale, roundingMode);
+        Double th = target.getBearingRadians();
+        Double tv = target.getVelocity();
 
-        this.targetHistory.add(target);
+        if (tv < 0) {
+            tv *= -1;
+            th = Utils.normalAbsoluteAngle(Math.PI + th);
+        }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.hostHeading);
-        //sb.append(this.hostVelocity);
-        sb.append(this.targetBearing);
+
+        this.targetHeading = Data.fuzzyWuzzy(th, scale, roundingMode);
+        this.targetVelocity = Data.fuzzyWuzzy(tv, 0, roundingMode);
+
+        final StringBuilder sb = new StringBuilder();
         sb.append(this.targetHeading);
-        //sb.append(this.targetVelocity);
-        sb.append(this.targetDistance);
+        sb.append(this.targetVelocity);
 
         this.hashCode = sb.toString().hashCode();
     }
@@ -58,28 +55,29 @@ public class Data {
         return Collections.unmodifiableMap(this.paths);
     }
 
-    public void addPath(Integer trailHash, ScannedRobotEvent target) {
+    public void addPath(Integer trailHash, AdvancedRobot host, ScannedRobotEvent target) {
         if (!paths.containsKey(trailHash)) {
             paths.put(trailHash, new Path(trailHash));
         }
-        paths.get(trailHash).updatePath(target.getTime() - this.lastUpdateTick);
+
+        final Point currentTargetPoint = Data.getTargetPoint(host, target);
+        final Point offsetPoint = new Point(currentTargetPoint.getX() - this.targetPoint.getX(),
+                                            currentTargetPoint.getY() - this.targetPoint.getY());
+
+        final Double lastBearing = Utils.normalAbsoluteAngle((Math.PI / 2) - Math.atan2(offsetPoint.getY(), offsetPoint.getX()));
+        final Double lastDistance = Math.sqrt(Math.pow(Math.abs(offsetPoint.getX()), 2) + Math.pow(Math.abs(offsetPoint.getY()), 2));
+        paths.get(trailHash).updatePath(target.getTime() - this.lastUpdateTick, lastBearing, Math.abs(lastDistance));
     }
 
-    public void updateData(ScannedRobotEvent target) {
+    public void updateData(AdvancedRobot host, ScannedRobotEvent target) {
+        this.targetPoint = Data.getTargetPoint(host, target);
         this.lastUpdateTick = target.getTime();
         this.targetHistory.add(target);
+
     }
 
     public Long getLastUpdateTick() {
         return lastUpdateTick;
-    }
-
-    public Double getHostHeading() {
-        return this.hostHeading;
-    }
-
-    public Double getHostVelocity() {
-        return this.hostVelocity;
     }
 
     public Double getTargetHeading() {
@@ -88,14 +86,6 @@ public class Data {
 
     public Double getTargetVelocity() {
         return this.targetVelocity;
-    }
-
-    public Double getTargetBearing() {
-        return this.targetBearing;
-    }
-
-    public Double getTargetDistance() {
-        return this.targetDistance;
     }
 
     public List<ScannedRobotEvent> getTargetHistory() {
@@ -118,5 +108,11 @@ public class Data {
     private static Double fuzzyWuzzy(Double value, int scale, RoundingMode roundingMode) {
         BigDecimal scaled = BigDecimal.valueOf(value).setScale(scale, roundingMode);
         return scaled.doubleValue();
+    }
+
+    private static Point getTargetPoint(AdvancedRobot host, ScannedRobotEvent target) {
+        final double bearingAngleToGrid = host.getHeadingRadians() + target.getBearingRadians();
+        return new Point(host.getX() + Math.sin(bearingAngleToGrid) * target.getDistance(),
+                         host.getY() + Math.cos(bearingAngleToGrid) * target.getDistance());
     }
 }
