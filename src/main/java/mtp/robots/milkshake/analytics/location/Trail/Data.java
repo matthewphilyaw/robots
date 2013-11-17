@@ -28,7 +28,7 @@ public class Data {
     public Data(AdvancedRobot host, ScannedRobotEvent target, RingBuffer<Data> trail) {
         this.trail = trail;
 
-        Double th = target.getBearingRadians();
+        Double th = target.getHeading();
         Double tv = target.getVelocity();
 
         if (tv < 0) {
@@ -36,13 +36,12 @@ public class Data {
             th = Utils.normalAbsoluteAngle(Math.PI + th);
         }
 
-
         this.targetHeading = Data.fuzzyWuzzy(th, scale, roundingMode);
         this.targetVelocity = Data.fuzzyWuzzy(tv, 0, roundingMode);
 
         final StringBuilder sb = new StringBuilder();
         sb.append(this.targetHeading);
-        sb.append(this.targetVelocity);
+        //sb.append(this.targetVelocity);
 
         this.hashCode = sb.toString().hashCode();
     }
@@ -73,7 +72,6 @@ public class Data {
         this.targetPoint = Data.getTargetPoint(host, target);
         this.lastUpdateTick = target.getTime();
         this.targetHistory.add(target);
-
     }
 
     public Long getLastUpdateTick() {

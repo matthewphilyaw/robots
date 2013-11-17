@@ -55,15 +55,16 @@ public class MilkShake extends AdvancedRobot {
         PredictionGroup pgroup;
         synchronized (LELock) {
             le.updateEngine(this, e);
-            pgroup = le.getPredictionsForNTicks(200);
+            pgroup = le.getPredictionsForNTicks(1000);
+
+            if (pgroup.getPredictions().size() > 0) {
+                pg = pgroup;
+            }
+
+            if (pg != null)
+                System.out.println(pg.getPredictions().size());
         }
 
-        if (pgroup.getPredictions().size() > 0) {
-            pg = pgroup;
-        }
-
-        if (pg != null)
-            System.out.println(pg.getPredictions().size());
 
         if (this.getGunTurnRemaining() > 0)
             return;
@@ -118,23 +119,26 @@ public class MilkShake extends AdvancedRobot {
     }
 
     public void onPaint(Graphics2D g) {
-        if (pg == null) return;
-        if (pg.getPredictions().size() < 1) return;
+        synchronized (LELock) {
+            if (pg == null) return;
+            if (pg.getPredictions().size() < 1) return;
 
-        List<Prediction> lp = pg.getPredictions();
-        double firstAngle = this.getHeadingRadians() + pg.getRootEvent().getBearingRadians();
-        Point fp = new Point(this.getX() + Math.sin(firstAngle) * pg.getRootEvent().getDistance(),
-                             this.getY() + Math.cos(firstAngle) * pg.getRootEvent().getDistance());
-        System.out.println("drawing!");
-        g.setColor(new Color(120, 255, 0, 255));
-        for (int i = 0; i < lp.size(); i++) {
-            Prediction c = lp.get(i);
-            Point cp = new Point(fp.getX() + Math.sin(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction(),
-                                 fp.getY() + Math.cos(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction());
-            g.drawLine(fp.getX().intValue(), fp.getY().intValue(), cp.getX().intValue(), cp.getY().intValue());
-            g.fillOval(cp.getX().intValue() - 2, cp.getY().intValue() - 2, 4, 4);
-            g.fillOval(cp.getX().intValue() - 5, cp.getY().intValue() - 5, 10, 10);
-            fp = cp;
+            List<Prediction> lp = pg.getPredictions();
+            double firstAngle = this.getHeadingRadians() + pg.getRootEvent().getBearingRadians();
+            Point fp = new Point(this.getX() + Math.sin(firstAngle) * pg.getRootEvent().getDistance(),
+                    this.getY() + Math.cos(firstAngle) * pg.getRootEvent().getDistance());
+
+            System.out.println("drawing!");
+            g.setColor(new Color(120, 255, 0, 255));
+            g.fillOval(fp.getX().intValue() - 1, fp.getY().intValue() - 1, 2, 2);
+            for (int i = 0; i < lp.size(); i++) {
+                Prediction c = lp.get(i);
+                Point cp = new Point(fp.getX() + Math.sin(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction(),
+                        fp.getY() + Math.cos(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction());
+                g.drawLine(fp.getX().intValue(), fp.getY().intValue(), cp.getX().intValue(), cp.getY().intValue());
+                g.fillOval(cp.getX().intValue() - 1, cp.getY().intValue() - 1, 2, 2);
+                fp = cp;
+            }
         }
     }
 
