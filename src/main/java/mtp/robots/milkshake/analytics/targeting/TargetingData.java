@@ -101,7 +101,7 @@ public class TargetingData {
         return sb.toString();
     }
 
-    private static double normalizeAngleToCannon(AdvancedRobot self, double angle) {
+    public static double normalizeAngleToCannon(AdvancedRobot self, double angle) {
         final double gunAngle = self.getGunHeadingRadians();
 
         if (Utils.isNear(gunAngle, angle))

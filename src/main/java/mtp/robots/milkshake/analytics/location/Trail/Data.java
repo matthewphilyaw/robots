@@ -28,14 +28,13 @@ public class Data {
     public Data(AdvancedRobot host, ScannedRobotEvent target, RingBuffer<Data> trail) {
         this.trail = trail;
 
-        Double th = target.getBearingRadians();
+        Double th = target.getHeadingRadians();
         Double tv = target.getVelocity();
 
         if (tv < 0) {
             tv *= -1;
             th = Utils.normalAbsoluteAngle(Math.PI + th);
         }
-
 
         this.targetHeading = Data.fuzzyWuzzy(th, scale, roundingMode);
         this.targetVelocity = Data.fuzzyWuzzy(tv, 0, roundingMode);

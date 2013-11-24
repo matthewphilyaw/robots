@@ -6,6 +6,7 @@ import mtp.robots.milkshake.analytics.targeting.TargetingData;
 import mtp.robots.milkshake.analytics.targeting.TargetingPrediction;
 import mtp.robots.milkshake.util.Point;
 import robocode.*;
+import robocode.util.Utils;
 
 import java.awt.*;
 import java.util.*;
@@ -38,64 +39,48 @@ public class MilkShake extends AdvancedRobot {
         while (true) {
             waitFor(new RadarTurnCompleteCondition(this));
             setTurnRadarRight(360);
-            //setAhead(100);
+            setAhead(100);
         }
     }
 
     public void onHitWall(HitWallEvent e) {
-//      this.setTurnRight(e.getBearing());
-//      waitFor(new TurnCompleteCondition(this));
-//      this.setTurnRight(180);
-//      waitFor(new TurnCompleteCondition(this));
-//      this.setAhead(50);
-//      this.setTurnRight(90);
+        this.setTurnRight(e.getBearing());
+        waitFor(new TurnCompleteCondition(this));
+        this.setTurnRight(180);
+        waitFor(new TurnCompleteCondition(this));
+        this.setAhead(50);
+        this.setTurnRight(90);
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
-        PredictionGroup pgroup;
         synchronized (LELock) {
+            PredictionGroup pgroup;
+
             le.updateEngine(this, e);
-            pgroup = le.getPredictionsForNTicks(200);
-        }
+            pgroup = le.getPredictionsForNTicks(100);
 
-        if (pgroup.getPredictions().size() > 0) {
-            pg = pgroup;
-        }
+            if (this.getGunTurnRemaining() > 0)
+                return;
 
-        if (pg != null)
-            System.out.println(pg.getPredictions().size());
+            if (!this.fire)  {
+                if (pgroup.getPredictions().size() > 0) {
+                    pg = pgroup;
 
-        if (this.getGunTurnRemaining() > 0)
-            return;
-
-        if (this.fire && !(this.getGunHeat() > 0)) {
-            this.fire = false;
-            Bullet b = this.setFireBullet(.05);
-            if (solutionToFire == null) { System.out.println("solution to fire is null"); return; }
-            if (b == null) { System.out.println("bullet is null"); return; }
-            synchronized (bulletsFiredLock) {
-                bulletsFired.add(new BulletInfo(b.hashCode(),
-                                 solutionToFire,
-                                 MilkShake.battleId,
-                                 this.roundId));
+                    // use new system
+                    this.setTurnGunRightRadians(TargetingData.normalizeAngleToCannon(this, this.getFiringAngle(this, pg)));
+                    this.fire = true;
+                    System.out.println("firing!");
+                    return;
+                }
+                //else
+                //    this.setTurnGunRightRadians(this.getHeadingRadians() + e.getBearingRadians());
             }
-        }
 
-        try {
-            td = TargetingData.GenerateTargetingData(this, e, 30);
-
-            List<TargetingPrediction> solutions = td.getTargetingSolutions(1);
-            if (solutions.size() > 0) {
-                this.solutionToFire = solutions.get(0);
-                this.setTurnGunRightRadians(solutions.get(0).getNormalizedToCannonAngle());
-                this.fire = true;
+            // use old system.
+            if (this.fire && !(this.getGunHeat() > 0)) {
+                this.fire = false;
+                this.setFire(Rules.MAX_BULLET_POWER);
             }
-            else {
-                this.setTurnGunRightRadians(this.getHeadingRadians() + e.getBearingRadians());
-            }
-        }
-        catch (Exception ex) {
-            out.println(ex.getMessage());
         }
     }
 
@@ -118,23 +103,24 @@ public class MilkShake extends AdvancedRobot {
     }
 
     public void onPaint(Graphics2D g) {
-        if (pg == null) return;
-        if (pg.getPredictions().size() < 1) return;
+        synchronized (LELock) {
+            if (pg == null) return;
+            if (pg.getPredictions().size() < 1) return;
 
-        List<Prediction> lp = pg.getPredictions();
-        double firstAngle = this.getHeadingRadians() + pg.getRootEvent().getBearingRadians();
-        Point fp = new Point(this.getX() + Math.sin(firstAngle) * pg.getRootEvent().getDistance(),
-                             this.getY() + Math.cos(firstAngle) * pg.getRootEvent().getDistance());
-        System.out.println("drawing!");
-        g.setColor(new Color(120, 255, 0, 255));
-        for (int i = 0; i < lp.size(); i++) {
-            Prediction c = lp.get(i);
-            Point cp = new Point(fp.getX() + Math.sin(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction(),
-                                 fp.getY() + Math.cos(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction());
-            g.drawLine(fp.getX().intValue(), fp.getY().intValue(), cp.getX().intValue(), cp.getY().intValue());
-            g.fillOval(cp.getX().intValue() - 2, cp.getY().intValue() - 2, 4, 4);
-            g.fillOval(cp.getX().intValue() - 5, cp.getY().intValue() - 5, 10, 10);
-            fp = cp;
+            List<Prediction> lp = pg.getPredictions();
+            double firstAngle = this.getHeadingRadians() + pg.getRootEvent().getBearingRadians();
+            Point fp = new Point(this.getX() + Math.sin(firstAngle) * pg.getRootEvent().getDistance(),
+                                 this.getY() + Math.cos(firstAngle) * pg.getRootEvent().getDistance());
+            g.setColor(new Color(120, 255, 0, 255));
+            for (int i = 0; i < lp.size(); i++) {
+                Prediction c = lp.get(i);
+                Point cp = new Point(fp.getX() + Math.sin(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction(),
+                        fp.getY() + Math.cos(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction());
+                g.drawLine(fp.getX().intValue(), fp.getY().intValue(), cp.getX().intValue(), cp.getY().intValue());
+                g.fillOval(cp.getX().intValue() - 2, cp.getY().intValue() - 2, 4, 4);
+                g.fillOval(cp.getX().intValue() - 5, cp.getY().intValue() - 5, 10, 10);
+                fp = cp;
+            }
         }
     }
 
@@ -149,5 +135,22 @@ public class MilkShake extends AdvancedRobot {
             bw.close();
         }
         catch (Exception e) { System.out.println(e.getMessage()); }
+    }
+
+    private Double getFiringAngle(AdvancedRobot host, PredictionGroup pg) {
+        List<Prediction> lp = pg.getPredictions();
+        double firstAngle = host.getHeadingRadians() + pg.getRootEvent().getBearingRadians();
+        Point fp = new Point(host.getX() + Math.sin(firstAngle) * pg.getRootEvent().getDistance(),
+                             host.getY() + Math.cos(firstAngle) * pg.getRootEvent().getDistance());
+        System.out.println("drawing!");
+        for (int i = 0; i < lp.size(); i++) {
+            Prediction c = lp.get(i);
+            Point cp = new Point(fp.getX() + Math.sin(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction(),
+                                 fp.getY() + Math.cos(c.getTargetBearingFromLastPrediction()) * c.getTargetDistanceFromLastPrediction());
+            fp = cp;
+        }
+
+        Point offset = new Point(fp.getX() - host.getX(), fp.getY() - host.getY());
+        return Utils.normalAbsoluteAngle((Math.PI / 2) - Math.atan2(offset.getY(), offset.getX()));
     }
 }

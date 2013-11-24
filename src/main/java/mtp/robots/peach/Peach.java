@@ -65,7 +65,7 @@ public class Peach extends AdvancedRobot {
                 this.solutionToFire = solutions.get(index);*/
                 this.solutionToFire = solutions.get(0);
                 this.setTurnGunRightRadians(solutions.get(0).getNormalizedToCannonAngle());
-                this.fire = true;
+                //this.fire = true;
             }
             else {
                 this.setTurnGunRightRadians(this.getHeadingRadians() + e.getBearingRadians());
