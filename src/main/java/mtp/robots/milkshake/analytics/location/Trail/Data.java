@@ -28,7 +28,7 @@ public class Data {
     public Data(AdvancedRobot host, ScannedRobotEvent target, RingBuffer<Data> trail) {
         this.trail = trail;
 
-        Double th = target.getHeading();
+        Double th = target.getHeadingRadians();
         Double tv = target.getVelocity();
 
         if (tv < 0) {

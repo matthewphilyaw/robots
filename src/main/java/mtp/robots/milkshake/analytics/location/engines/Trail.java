@@ -11,7 +11,7 @@ import robocode.ScannedRobotEvent;
 import java.util.*;
 
 public class Trail implements Engine {
-    RingBuffer<Data> trail = new RingBuffer<Data>(2);
+    RingBuffer<Data> trail = new RingBuffer<Data>(1);
     Map<Integer, Data> g = new HashMap<Integer, Data>();
 
     public void updateEngine(AdvancedRobot host, ScannedRobotEvent target) {
@@ -87,7 +87,7 @@ public class Trail implements Engine {
                 }
                 else if (path.getVisitCount() < p.getVisitCount() &&
                          path.getAvgTicksFromLastPrediction() > 0 &&
-                         path.getVisitCount() > 1) {
+                         path.getVisitCount() > 1)
                     path = p;
                 }
             }
