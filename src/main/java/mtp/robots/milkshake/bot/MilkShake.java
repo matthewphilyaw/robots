@@ -39,7 +39,7 @@ public class MilkShake extends AdvancedRobot {
         while (true) {
             waitFor(new RadarTurnCompleteCondition(this));
             setTurnRadarRight(360);
-            setAhead(100);
+            //setAhead(100);
         }
     }
 
@@ -57,8 +57,8 @@ public class MilkShake extends AdvancedRobot {
             PredictionGroup pgroup;
 
             le.updateEngine(this, e);
-            pgroup = le.getPredictionsForNTicks(100);
-
+            pgroup = le.getPredictionsForNTicks(30);
+            //if (pgroup.getPredictions().size() > 0) pg = pgroup;
             if (this.getGunTurnRemaining() > 0)
                 return;
 

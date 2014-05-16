@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 import java.util.*;
 
 public class Data {
-    final int scale = -1;
+    final int scale = 1;
     final int hashCode;
 
     final RoundingMode roundingMode = RoundingMode.HALF_UP;
