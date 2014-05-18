@@ -11,7 +11,7 @@ import robocode.ScannedRobotEvent;
 import java.util.*;
 
 public class Trail implements Engine {
-    RingBuffer<Data> trail = new RingBuffer<Data>(4);
+    RingBuffer<Data> trail = new RingBuffer<Data>(6);
     Map<Integer, Data> g = new HashMap<Integer, Data>();
 
     public void updateEngine(AdvancedRobot host, ScannedRobotEvent target) {
@@ -41,10 +41,9 @@ public class Trail implements Engine {
         // Insert updated trail if it doesn't exist.
         if (!g.containsKey(trail.getHash())) {
             g.put(trail.getHash(), trail.getHead());
+        } else {
+            g.get(trail.getHash()).updateData(host, target);
         }
-
-        // need to update the data every scan as well.
-        g.get(trail.getHash()).updateData(host, target);
 
         g.get(currentHash).addPath(trail.getHash(), host, target);
     }
@@ -65,6 +64,17 @@ public class Trail implements Engine {
             @Override
             public List<Prediction> getPredictions() {
                 return list;
+            }
+
+            @Override
+            public Long getActualTicks() {
+                Long ticks = 0L;
+
+                for (Prediction p : this.list) {
+                    ticks += p.getAvgTicksFromLastPrediction();
+                }
+
+                return ticks;
             }
         };
 

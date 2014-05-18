@@ -7,4 +7,5 @@ import java.util.List;
 public interface PredictionGroup {
     ScannedRobotEvent getRootEvent();
     List<Prediction> getPredictions();
+    Long getActualTicks();
 }

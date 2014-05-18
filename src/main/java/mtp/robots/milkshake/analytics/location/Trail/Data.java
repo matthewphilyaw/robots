@@ -41,7 +41,7 @@ public class Data {
 
         final StringBuilder sb = new StringBuilder();
         sb.append(this.targetHeading);
-        //sb.append(this.targetVelocity);
+        sb.append(this.targetVelocity);
 
         this.hashCode = sb.toString().hashCode();
     }
