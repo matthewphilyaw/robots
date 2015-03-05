@@ -18,6 +18,11 @@
     <!-- Import junit, all the robocode jar files, plus the robocode testing plugin. -->
     <dependencies>
         <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>

@@ -13,8 +13,14 @@ import java.util.*;
 import java.util.List;
 import java.util.UUID;
 import java.io.FileWriter;
-import java.io.File;
+import java.net.Socket;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.BufferedWriter;
+import java.io.File;
+import javax.json.*;
 
 public class MilkShake extends AdvancedRobot {
     static final UUID battleId = UUID.randomUUID();
@@ -23,6 +29,10 @@ public class MilkShake extends AdvancedRobot {
     static final Object bulletsFiredLock = new Object();
     static final Object LELock = new Object();
     static final Engine le = new Manager(EngineType.TRAIL).getLocationEngine();
+    static final JsonBuilderFactory jsFac = Json.createBuilderFactory(null);
+    static final String serverAddress = "localhost";
+    static Socket socket;
+    static PrintWriter sOut;
 
     final UUID roundId = UUID.randomUUID();
     final List<BulletInfo> bulletsThatHit = new ArrayList<BulletInfo>();
@@ -37,6 +47,21 @@ public class MilkShake extends AdvancedRobot {
     Long duration = 0L;
 
     public void run() {
+        if (socket == null && this.getBattleNum() < 1)
+        {
+            try
+            {
+                out.println("setting it up");
+                socket = new Socket(serverAddress, 8888);
+                sOut = new PrintWriter(socket.getOutputStream(), true);
+                out.println("connected.");
+            }
+            catch (Exception e)
+            {
+                out.println("failed");
+            }
+        }
+
         this.setAdjustGunForRobotTurn(true);
         this.setAdjustRadarForGunTurn(true);
 
@@ -57,7 +82,33 @@ public class MilkShake extends AdvancedRobot {
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
+        if (e.getEnergy() < 1) 
+        {
+            out.println("enemy has no energy... ignore");
+            return;
+        }
         synchronized (LELock) {
+            JsonObject obj = jsFac.createObjectBuilder()
+                .add("self", jsFac.createObjectBuilder()
+                        .add("heading", this.getHeadingRadians())
+                        .add("loc", jsFac.createObjectBuilder()
+                            .add("x", this.getX())
+                            .add("y", this.getY())))
+                .add("target", jsFac.createObjectBuilder()
+                        .add("bearing", e.getBearingRadians())
+                        .add("distance", e.getDistance())
+                        .add("energy", e.getEnergy())
+                        .add("heading", e.getHeadingRadians())
+                        .add("name", e.getName())
+                        .add("velocity", e.getVelocity()))
+                .build();
+
+            if (sOut != null) { 
+                out.println("Sending!!!");
+                sOut.println(obj.toString());
+                sOut.flush();
+            }
+
             PredictionGroup pgroup;
 
             le.updateEngine(this, e);
